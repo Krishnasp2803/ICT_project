@@ -1,5 +1,5 @@
 import React,{useState}from 'react'
-import Navbar from '../components/Navbar'
+import Navbar_user from '../components/Navbar_user'
 import SidebarUserProf from '../components/SidebarUserProf'
 import UserDetails from '../components/UserDetails'
 import RegisteredEvents from '../components/RegisteredEvents'
@@ -33,7 +33,7 @@ function UserProfile() {
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black overlay
         zIndex: -1,
       }}></div>
-      <Navbar/>
+      <Navbar_user/>
       <div>
           <div>
           <SidebarUserProf setActiveTab={setActiveTab} />
