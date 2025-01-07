@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/Navbaradmin';
 import bg from '../images/eventbg.png';
 
-function Home() {
+function AdminHome() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [daysInMonth, setDaysInMonth] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null); // To store the selected day
@@ -170,4 +170,4 @@ function Home() {
 </div>
 );
 }
-export default Home;
+export default AdminHome;
