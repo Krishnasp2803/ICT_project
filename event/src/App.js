@@ -18,7 +18,7 @@ function App() {
         <Route path='/adminhome'element={<AdminHome/>}></Route>
         <Route path='/aevent'element={<Allevents/>}></Route>
         <Route path='/acalendar'element={<Calendar/>}></Route>
-        <Route path="/userprofile" element={<UserProfile />} />
+        <Route path='/userprofile' element={<UserProfile/>} />
         </Routes>
       </Router>
     </div>

@@ -33,8 +33,8 @@ function Navbar() {
       />
       <a //href="/"
        style={{
-        color:'white',
-        marginRight:'835px',
+        color:'black',
+        marginRight:'690px',
         fontFamily:'Arizonia',
         fontSize:'58px',
 

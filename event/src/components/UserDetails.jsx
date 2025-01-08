@@ -189,7 +189,7 @@ function UserDetails() {
                     }}/>
       </div>
       <div style={{ marginTop:'70px',marginLeft:'0px',marginBottom:'20px',}}>
-      <div style={{color:'white',marginLeft:'12px',fontSize:'90%'}}>Select Ticket Type</div>
+      <div style={{color:'white',marginLeft:'2px',fontSize:'90%'}}>Select Ticket Type</div>
 
       {/* Dropdown */}
       <select onChange={handleChange} defaultValue="" 
