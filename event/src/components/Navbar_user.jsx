@@ -33,7 +33,7 @@ function Navbar() {
       />
       <a //href="/"
        style={{
-        color:'white',
+        color:'black',
         marginRight:'690px',
         fontFamily:'Arizonia',
         fontSize:'58px',
