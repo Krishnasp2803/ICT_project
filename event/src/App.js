@@ -7,6 +7,7 @@ import Login_admin from './pages/Login_admin';
 import Calendar from './pages/Calendar';
 import UserProfile from './pages/UserProfile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Admin_signup from './pages/Admin_signup';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
         <Route index element={<Login_admin/>}/>
+        <Route path='/asignup'element={<Admin_signup/>}></Route>
         <Route path='/adminhome'element={<AdminHome/>}></Route>
         <Route path='/aevent'element={<Allevents/>}></Route>
         <Route path='/acalendar'element={<Calendar/>}></Route>
