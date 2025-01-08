@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-function Login() {
+function Login_admin() {
   return (
     <div
       style={{
@@ -111,4 +111,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Login_admin;
