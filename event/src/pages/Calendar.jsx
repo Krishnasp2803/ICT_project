@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cbg from '../images/Calenbg.png';
 import { MdKeyboardArrowLeft, MdChevronRight } from "react-icons/md";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import Sidebar from "../components/Sidebaradmin.jsx";
 
 function Calendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -51,10 +52,6 @@ function Calendar() {
     setIsSidebarOpen(true); // Open the sidebar
   };
 
-  const closeSidebar = () => {
-    setIsSidebarOpen(false); // Close the sidebar
-  };
-
   const handleDateChange = (e, type) => {
     const value = parseInt(e.target.value, 10);
     let newDate = new Date(currentDate);
@@ -76,36 +73,6 @@ function Calendar() {
     }
     return years;
   };
-
-  const Sidebar = () => (
-    <div
-      style={{
-        width: '30%',
-        backgroundColor: '#fff',
-        color: '#000',
-        padding: '20px',
-        boxShadow: '-2px 0 5px rgba(0, 0, 0, 0.2)',
-        overflowY: 'auto',
-      }}
-    >
-      <button
-        onClick={closeSidebar}
-        style={{
-          backgroundColor: '#000',
-          color: '#fff',
-          padding: '10px',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          marginBottom: '20px',
-        }}
-      >
-        Close Sidebar
-      </button>
-      <h2>Details for {selectedDate?.toLocaleDateString()}</h2>
-      <p>Content for the selected date goes here.</p>
-    </div>
-  );
 
   const today = new Date();
   const isToday = (day) =>
@@ -280,7 +247,8 @@ function Calendar() {
       </div>
 
       {/* Sidebar Section */}
-      {isSidebarOpen && <Sidebar />}
+      {isSidebarOpen && <Sidebar selectedDate={selectedDate} />}
+
     </div>
   );
 }
