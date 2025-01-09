@@ -1,8 +1,24 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
+
 
 function Login_admin() {
+ 
+const loginUser = async (email, password) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/admin/login', {
+      email,
+      password,
+    });
+    localStorage.setItem('token', response.data.token); // Save token in localStorage
+    alert('Login successful');
+  } catch (error) {
+    console.error('Login failed', error);
+    alert('Login failed');
+  }
+};                    // Call loginUser with the appropriate email and password
   return (
     <div
       style={{

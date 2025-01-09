@@ -18,8 +18,7 @@ function UserDetails() {
   const handleChange = (event) => {
     const selectedId = parseInt(event.target.value);
     const selected = options.find((item) => item.id === selectedId);
-    setSelectedItem(selected);
-  };
+    setSelectedItem(selected);}
 
   return (
     <div className="profile-card" style={{

@@ -1,8 +1,48 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 function Admin_signup() {
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+  const [password,setPassword]=useState('')
+  const [message,setMessage]=useState('')
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Create the data object to send
+    const data = { name, email, password };
+
+    try {
+        // Send POST request to the backend
+        const response = await fetch('http://localhost:5000/api/admin/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Process the response
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            setMessage("Registration successful!");
+            // Optionally reset the form
+            setName('');
+            setEmail('');
+            setPassword('');
+
+        } else {
+            const errorResponse = await response.json();
+
+            setMessage(`Error: ${errorResponse.message}`);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+        setMessage('An error occurred. Please try again later.');
+    }
+};
   return (
     <div
       style={{
@@ -37,6 +77,7 @@ function Admin_signup() {
         <TextField
           label="Name"
           type="text"
+          onChange={(e) => { setName(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
@@ -63,6 +104,7 @@ function Admin_signup() {
         <TextField
           label="Email"
           type="text"
+          onChange={(e) => { setEmail(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
@@ -89,6 +131,7 @@ function Admin_signup() {
         <TextField
           label="Password"
           type="password"
+          onChange={(e) => { setPassword(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
@@ -117,9 +160,11 @@ function Admin_signup() {
           color="primary"
           fullWidth
           style={{ marginTop: '20px', height: '50px' }}
+          onClick={handleSubmit}
         >
           Sign Up
         </Button>
+        {message && <p>{message}</p>}
         
       </div>
     </div>
