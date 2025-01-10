@@ -36,6 +36,7 @@ router.post('/login', async (req, res) => {
 
     if (admin && (await admin.matchPassword(password))) {
       res.status(200).json({
+        message: 'Login successful',
         _id: admin._id,
         name: admin.name,
         email: admin.email,

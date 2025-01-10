@@ -2,23 +2,68 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
+import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login_admin() {
- 
-const loginUser = async (email, password) => {
-  try {
-    const response = await axios.post('http://localhost:5000/api/admin/login', {
-      email,
-      password,
-    });
-    localStorage.setItem('token', response.data.token); // Save token in localStorage
-    alert('Login successful');
-  } catch (error) {
-    console.error('Login failed', error);
-    alert('Login failed');
-  }
-};                    // Call loginUser with the appropriate email and password
+
+const [message,setMessage]=useState('')
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const navigate = useNavigate();
+
+const handleSubmit = async () => {
+  const logindata = { email, password };
+  
+    
+    // Create the logindata object to send
+    
+    try {
+        // Send POST request to the backend
+        const response = await fetch('http://localhost:5000/api/admin/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(logindata),
+        });
+
+        // Process the response
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            setMessage("Login successful!");
+            navigate('/adminhome');
+            
+        } else {
+            const errorResponse = await response.json();
+
+            setMessage(`Error: ${errorResponse.message}`);
+        }
+    } 
+
+    catch (error) {
+      console.error("Axios Error:", error.message, error.stack); // Log complete error details
+      let errorMessage = 'Login failed: An unexpected error occurred.';
+  
+      if (error.response) {
+        // Server responded with an error status code
+        const status = error.response.status;
+        const data = error.response.data;
+        errorMessage = `Login failed (HTTP ${status}): ${data.message || 'Server error'}`;
+      } else if (error.request) {
+        // Request made, but no response received (likely network issue)
+        errorMessage = 'Login failed: No response from server (network error?)';
+      } else {
+        // Error occurred before sending the request
+        errorMessage = `Login failed: ${error.message}`;
+      }
+      alert(errorMessage);
+    }
+  
+    
+    
+};               // Call loginUser with the appropriate email and password
   return (
     <div
       style={{
@@ -51,13 +96,15 @@ const loginUser = async (email, password) => {
           ADMIN LOGIN
         </h2>
         <TextField
-          label="Name"
+          label="Email"
           type="text"
           fullWidth
           variant="outlined"
           margin="normal"
+          onChange={(e) => setEmail(e.target.value)}
           InputProps={{
             style: { color: 'white' },
+
           }}
           InputLabelProps={{
             style: { color: 'white' },
@@ -82,6 +129,7 @@ const loginUser = async (email, password) => {
           fullWidth
           variant="outlined"
           margin="normal"
+          onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             style: { color: 'white' },
           }}
@@ -107,9 +155,12 @@ const loginUser = async (email, password) => {
           color="primary"
           fullWidth
           style={{ marginTop: '20px', height: '50px' }}
+          onClick={handleSubmit}
         >
+          
           Login
         </Button>
+        {message && <p>{message}</p>}
         <p
           style={{
             fontSize: '16px',
