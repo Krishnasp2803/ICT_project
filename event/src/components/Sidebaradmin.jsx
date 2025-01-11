@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { GoPlusCircle } from "react-icons/go";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import DatePicker from 'react-datepicker'; 
+import 'react-datepicker/dist/react-datepicker.css';
 
 function Sidebar({ selectedDate }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [eventName, setEventName] = useState('');
   const [eventTime, setEventTime] = useState('');
   const [addedEvents, setAddedEvents] = useState([]);
+  const [eventDate, setEventDate] = useState(new Date());
 
 
   const togglePopup = () => {
@@ -79,7 +82,7 @@ function Sidebar({ selectedDate }) {
             transform: 'translate(-50%, -50%)',
             display: 'flex',
             flexDirection: 'column',
-            width: '400px',
+            width: '700px',
             padding: '40px',
             background: 'rgba(0, 42, 59, 0.9)',
             boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -120,6 +123,38 @@ function Sidebar({ selectedDate }) {
   }}
 />
 
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ flex: 1 }}>
+              <TextField
+                label="City"
+                fullWidth
+                variant="outlined"
+                margin="normal"
+                InputProps={{ style: { color: 'white' } }}
+                InputLabelProps={{ style: { color: 'white' } }}
+                sx={{
+                  '& .MuiOutlinedInput-root': {
+                    '& fieldset': { borderColor: 'white' },
+                    '&:hover fieldset': { borderColor: 'white' },
+                    '&.Mui-focused fieldset': { borderColor: 'white' },
+                  },
+                }}
+              />
+            </div>
+            <div style={{ flex: 1 }}>
+                <DatePicker 
+        selected={eventDate} 
+        onChange={(date) => setEventDate(date)} 
+        dateFormat="yyyy-MM-dd"
+        InputProps={{ style: { color: 'white' } }}
+        InputLabelProps={{ style: { color: 'white' } }} 
+        />
+        
+        
+              
+            </div>
+          </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             <div style={{ flex: 1 }}>
