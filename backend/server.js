@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./db');
 const adminRoutes = require('./routes/admin_login');
+const eventRoutes = require('./routes/event');
 
 dotenv.config();
 connectDB();
@@ -17,6 +18,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/admin', adminRoutes);
+app.use('/api/event', eventRoutes);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

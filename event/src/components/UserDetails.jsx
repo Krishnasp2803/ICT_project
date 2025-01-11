@@ -28,7 +28,7 @@ function UserDetails() {
       borderRadius: '12px',
       boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
       
-      marginLeft: '140px',
+      marginLeft: '120px',
       backgroundColor:'rgb(77,49,25,0.8)',
       zIndex: '1000',
       
@@ -36,11 +36,11 @@ function UserDetails() {
       <h2 style={{
         color: 'white',
         fontFamily: 'LimeLight',
-        marginLeft:'320px',
+        marginRight:'260px',
       }}>Profile</h2>
     
 
-    <div class="user-name" style={{width:'100%',height:'130px',marginTop:'20px',display:'flex',}}>
+    <div class="user-name" style={{width:'100%',height:'130px',marginTop:'20px',display:'flex',marginLeft:'100px'}}>
       <div class="first-name" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
         <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>First Name</div>
          <TextField  type='name' name='name' value='Aaron'
@@ -170,7 +170,7 @@ function UserDetails() {
       </div>
     </div>
       <div class="interests" style={{width:'100%',height:'130px',marginTop:'5px',display:'flex',flexDirection:'column',}}>
-    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginRight:'0px',}}>
           Interests</div>
          <TextField  type='name' name='interests' multiline rows={4} variant='outlined'
                     sx={{
@@ -188,7 +188,7 @@ function UserDetails() {
                     }}/>
       </div>
       <div style={{ marginTop:'70px',marginLeft:'0px',marginBottom:'20px',}}>
-      <div style={{color:'white',marginLeft:'2px',fontSize:'90%'}}>Select Ticket Type</div>
+      <div style={{color:'white',marginRight:'800px',fontSize:'90%'}}>Select Ticket Type</div>
 
       {/* Dropdown */}
       <select onChange={handleChange} defaultValue="" 
@@ -201,6 +201,7 @@ function UserDetails() {
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
         marginTop:'5px',
         borderColor:'rgb(0,0,0,0.3)',
+        marginRight:'220px'
         }}>
         <option value="" disabled style={{color:'black'}}>
           -- Choose an option --

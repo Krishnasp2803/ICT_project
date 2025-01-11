@@ -31,7 +31,7 @@ function SidebarUserProf({setActiveTab}) {
             }
         }> <IoPersonCircleSharp style={{
             fontSize:'700%',
-            marginLeft:'90px',
+            marginLeft:'10px',
             marginTop:'20px',
             
         }}/>
