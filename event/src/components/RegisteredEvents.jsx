@@ -10,7 +10,7 @@ function RegisteredEvents() {
         borderRadius: '12px',
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
         textAlign: 'center',
-        marginLeft: '140px',
+        marginLeft: '400px',
         backgroundColor:'rgb(77,49,25,0.8)',
         zIndex: '1000',
     }}>

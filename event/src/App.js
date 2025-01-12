@@ -8,6 +8,8 @@ import Calendar from './pages/Calendar';
 import UserProfile from './pages/UserProfile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin_signup from './pages/Admin_signup';
+import Usersignup from './pages/Usersignup';
+import UserLogin from './pages/UserLogin';
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path='/aevent'element={<Allevents/>}></Route>
         <Route path='/acalendar'element={<Calendar/>}></Route>
         <Route path='/userprofile' element={<UserProfile/>} />
+        <Route path='/usersignup' element={<Usersignup/>} />
+        <Route path='/userlogin' element={<UserLogin/>} />
         </Routes>
       </Router>
     </div>

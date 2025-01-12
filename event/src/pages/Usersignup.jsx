@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const UserSignUpPage = () => {
   const styles = {
@@ -43,6 +45,51 @@ const UserSignUpPage = () => {
     },
   };
 
+  const [user_name,setUserName]=useState('')
+  const [user_email,setUserEmail]=useState('')
+  const [user_password,setUserPassword]=useState('')
+  const [user_contactno,setUserContactNo]=useState('')
+  const [message,setMessage]=useState('')
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Create the data object to send
+    const data = { user_name, user_email, user_password, user_contactno };
+
+    try {
+        // Send POST request to the backend
+        const response = await fetch('http://localhost:5000/api/user/usersignup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        // Process the response
+        if (response.ok) {
+            const jsonResponse = await response.json();
+            alert("Registration successful!");
+            // Optionally reset the form
+            setUserName('');
+            setUserEmail('');
+            setUserPassword('');
+            setUserContactNo('');
+            navigate('/home');
+
+        } else {
+            const errorResponse = await response.json();
+
+            setMessage(`Error: ${errorResponse.message}`);
+        }
+    } catch (error) {
+        console.error('Error during registration:', error);
+        setMessage('An error occurred. Please try again later.');
+    }
+};
+
   return (
     <div style={styles.body}>
       <h2 style={styles.h2}>User Sign Up</h2>
@@ -52,6 +99,7 @@ const UserSignUpPage = () => {
           id="Username"
           name="Username"
           placeholder="Username"
+          onChange={(e) => { setUserName(e.target.value) }}
           required
           style={styles.input}
         />
@@ -60,6 +108,7 @@ const UserSignUpPage = () => {
           id="Email"
           name="Email"
           placeholder="Email"
+          onChange={(e) => { setUserEmail(e.target.value) }}
           required
           style={styles.input}
         />
@@ -68,6 +117,7 @@ const UserSignUpPage = () => {
           id="Contact"
           name="Contact"
           placeholder="Contact Number"
+          onChange={(e) => { setUserContactNo(e.target.value) }}
           required
           style={styles.input}
         />
@@ -76,6 +126,7 @@ const UserSignUpPage = () => {
           id="Password"
           name="Password"
           placeholder="Password"
+          onChange={(e) => { setUserPassword(e.target.value) }}
           required
           style={styles.input}
         />
@@ -83,11 +134,11 @@ const UserSignUpPage = () => {
           <input type="checkbox" id="Terms" name="Terms" required />
           <label htmlFor="Terms">I agree to the terms and conditions</label>
         </div>
-        <button type="submit" style={styles.button}>
-          Sign Up As New User
+        <button type="submit" style={styles.button} onClick={handleSubmit}>
+          Sign Up 
         </button>
         <p>
-          Already have an account? <Link to="/user-login">Log In</Link>
+          Already have an account? <Link to="/userlogin">Log In</Link>
         </p>
       </form>
     </div>

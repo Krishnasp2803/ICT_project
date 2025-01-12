@@ -1,8 +1,8 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { RiLogoutCircleRLine } from "react-icons/ri";
-
+import { fetchUserData } from '../api';
 
 
 function SidebarUserProf({setActiveTab}) {
@@ -15,17 +15,52 @@ function SidebarUserProf({setActiveTab}) {
         setActiveTab(tab); // Call the parent handler to update the active tab
       };
 
+    const [loading, setLoading] = useState(true); // Declare loading state
+    const [error, setError] = useState(null);     // Declare error state
+    //const [userData, setUserData] = useState(null);
+        const [userData, setUserData] = useState({
+          username: '',
+        });
+      
+        // Fetch user data when component mounts
+        useEffect(() => {
+              // Get token from localStorage
+        const token = localStorage.getItem("token");  
+        if (!token) {
+          setError("No token found. Please log in.");
+          setLoading(false);
+          return;
+        }
+          const loadUserData = async () => {
+              try {
+                  const data = await fetchUserData();
+                  console.log('Fetched user data:', data); // Log the data
+                  const { user_name,} = data;
+                  setUserData({
+                    username: user_name,   // mapping from response
+                    
+                    
+                  })
+              } catch (error) {
+                  console.error('Error loading user data:', error);
+              }
+          };
+      
+          loadUserData();
+      }, []);
     
   
   return (
     <div style={{
         position: 'fixed',
-        width: '290px',
+        width: '20%',
         height: '100%',
         marginTop: '0px', // Adjust for the navbar height
         color: 'white',
         zIndex: '1000', // Ensure it stays on top of other elements
         //backgroundColor:'lightblue'
+        display:'flex',
+        flexDirection:'column'
     }}>
         <div style={
             {
@@ -36,8 +71,8 @@ function SidebarUserProf({setActiveTab}) {
             }
         }> <IoPersonCircleSharp style={{
             fontSize:'700%',
-            marginLeft:'10px',
-            marginTop:'10px',
+            marginLeft:'50%',
+            marginTop:'25px',
             
         }}/>
         <h4 
@@ -45,14 +80,16 @@ function SidebarUserProf({setActiveTab}) {
             textAlign:'center',
             marginTop:'0px',
             fontFamily:'Julius Sans One',
-        }}>USER NAME</h4>
+            marginLeft:'50%',
+        }}
+        >{userData.username}</h4>
             
         </div>
         <div>
            
                 <button style={{
-                    width:'290px',
-                    fontSize:'120%',
+                    width:'100%',
+                    fontSize:'160%',
                     backgroundColor:selected==1? '#733a08': hovered===1?'#733a08':'#472609',
                     border:'none',
                     padding:'20px',
@@ -75,8 +112,8 @@ function SidebarUserProf({setActiveTab}) {
                     PROFILE</button>
            
                 <button style={{
-                    width:'290px',
-                    fontSize:'120%',
+                    width:'100%',
+                    fontSize:'160%',
                     marginTop:'20px',
                     backgroundColor:selected==2? '#733a08':hovered===2?'#733a08':'#472609',
                     border:'none',
@@ -101,8 +138,8 @@ function SidebarUserProf({setActiveTab}) {
             
                 <button style={{
                     width:'290px',
-                    fontSize:'110%',
-                    marginTop:'110px',
+                    fontSize:'140%',
+                    marginTop:'86%',
                     color:hovered===4?'#a2591b':'white',
                     border:'none',
                     padding:'20px',
@@ -115,6 +152,7 @@ function SidebarUserProf({setActiveTab}) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    marginLeft:'15%'
                 }}
                 onMouseEnter={()=>handleMouseHover(4)}
                 onMouseLeave={handleMouseLeave}
@@ -122,8 +160,8 @@ function SidebarUserProf({setActiveTab}) {
                     <RiLogoutCircleRLine style={
                         {
                             fontSize:'150%',
-                            marginRight:'13px',
-                            marginTop:'4px',
+                            marginRight:'10px',
+                            marginTop:'2px',
                             fontWeight:'bolder',
 
                         }}/>

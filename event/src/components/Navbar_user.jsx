@@ -14,7 +14,7 @@ function Navbar() {
        alignItems: 'center', 
        justifyContent:'flex-end',
        width:'100%',
-       height:'90px',
+       height:'120px',
        position:'fixed',
        zIndex: '1000',
        //backdropFilter:'blur(10px)',
@@ -26,7 +26,7 @@ function Navbar() {
         className="profile-avatar"
         alt="logo"
         style={{
-          width: '90px',
+          width: '120px',
           height: 'auto',
           marginRight:'10px',
           
@@ -37,20 +37,20 @@ function Navbar() {
         to="/home"
         style={{
         color:'white',
-        marginRight:'900px',
+        marginRight:'67%',
         fontFamily:'Arizonia',
-        fontSize:'58px',
+        fontSize:'70px',
         textDecoration:'none'
 
        }}>Event</Link>
      
-      <a href="/" style={
+      <a href="/home" style={
         {
           textDecoration:'none',
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
-          fontSize:'120%',
+          fontSize:'150%',
           transform:hovered===5?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
         
         }}
@@ -63,7 +63,7 @@ function Navbar() {
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
-          fontSize:'120%',
+          fontSize:'150%',
           transform:hovered===6?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
           }}
           onMouseEnter={()=>handleMouseHover(6)}
@@ -75,7 +75,7 @@ function Navbar() {
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
-          fontSize:'120%',
+          fontSize:'150%',
           transform:hovered===7?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
           }}
           onMouseEnter={()=>handleMouseHover(7)}

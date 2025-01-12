@@ -43,10 +43,10 @@ function UserProfile() {
           <div
             style={{
               position: 'relative',
-              marginTop: '90px', // Adjust for the navbar height
+              marginTop: '120px', // Adjust for the navbar height
               padding: '20px',
               //width: 'calc(100% - 200px)', // Account for sidebar width
-              height: 'calc(100vh - 90px)', // Remaining height excluding navbar
+              height: 'calc(100vh - 120px)', // Remaining height excluding navbar
               overflowY: 'auto', // Enable vertical scrolling for content
               zIndex: 1, // Ensure it appears above the background
               paddingLeft:'200px',
