@@ -22,13 +22,13 @@ function UserDetails() {
 
   return (
     <div className="profile-card" style={{
-      width: '1000px',
+      width: '880px',
       
       padding: '20px',
       borderRadius: '12px',
       boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
       
-      marginLeft: '120px',
+      marginLeft: '160px',
       backgroundColor:'rgb(77,49,25,0.8)',
       zIndex: '1000',
       
@@ -36,13 +36,13 @@ function UserDetails() {
       <h2 style={{
         color: 'white',
         fontFamily: 'LimeLight',
-        marginRight:'260px',
+        marginRight:'30px',
       }}>Profile</h2>
     
 
-    <div class="user-name" style={{width:'100%',height:'130px',marginTop:'20px',display:'flex',marginLeft:'100px'}}>
-      <div class="first-name" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>First Name</div>
+    <div class="user-name" style={{width:'100%',height:'130px',marginTop:'20px',display:'flex',marginLeft:'30px'}}>
+      <div class="first-name" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>First Name</div>
          <TextField  type='name' name='name' value='Aaron'
                     sx={{
                       
@@ -58,8 +58,8 @@ function UserDetails() {
                       },
                     }}/>
       </div>
-      <div class="last-name" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+      <div class="last-name" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>
           Last Name</div>
          <TextField  type='name' name='name' value='Warner'
                     sx={{
@@ -75,9 +75,9 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-    <div class="contact-det" style={{width:'100%',height:'130px',marginTop:'10px',display:'flex',}}>
-      <div class="email" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+    <div class="contact-det" style={{width:'100%',height:'130px',marginTop:'10px',display:'flex',marginLeft:'30px',}}>
+      <div class="email" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'90%',width:'70px',height:'20px',marginTop:'5px',marginLeft:'0px',marginRight:'10px'}}>
           E-mail</div>
          <TextField  type='email' name='name' value='aaronwarner@gmail.com'
                     sx={{
@@ -94,8 +94,8 @@ function UserDetails() {
                       },
                     }}/>
       </div>
-      <div class="phone-num" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+      <div class="phone-num" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>
           Phone No.</div>
          <TextField  type='phone number' name='name' value='1234567890'
                     sx={{
@@ -111,14 +111,14 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-    <div class="address" style={{width:'100%',height:'130px',marginTop:'0px',display:'flex',flexDirection:'column',}}>
-    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+    <div class="address" style={{width:'100%',height:'130px',marginTop:'0px',display:'flex',flexDirection:'column',marginLeft:'30px',}}>
+    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>
           Address</div>
          <TextField  type='address' name='name'  multiline rows={4} variant='outlined'
                     sx={{
                       
                       marginInline: '10px',
-                      width: '722px',
+                      width: '760px',
                       marginLeft:'3px',
                       
                       '& .MuiOutlinedInput-root': {
@@ -131,9 +131,9 @@ function UserDetails() {
                       
                     }}/>
       </div>
-      <div class="age-gender" style={{width:'100%',height:'130px',marginTop:'65px',display:'flex',}}>
-      <div class="age" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+      <div class="age-gender" style={{width:'100%',height:'130px',marginTop:'65px',display:'flex',marginLeft:'30px',}}>
+      <div class="age" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'90%',width:'70px',height:'20px',marginTop:'5px',marginLeft:'0px',marginRight:'10px'}}>
           Age</div>
          <TextField  type='age' name='age' value='19'
                     sx={{
@@ -151,8 +151,8 @@ function UserDetails() {
                       },
                     }}/>
       </div>
-      <div class="gender" style={{color:'white',width:'40%',height:'90px',display:'flex',flexDirection:'column',}}>
-        <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'17px',}}>
+      <div class="gender" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
+        <div style={{color:'white',fontSize:'90%',width:'80px',height:'20px',marginTop:'5px',marginLeft:'0px',marginRight:'10px'}}>
           Gender</div>
          <TextField  type='name' name='gender' value='Male'
                     sx={{
@@ -169,14 +169,14 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-      <div class="interests" style={{width:'100%',height:'130px',marginTop:'5px',display:'flex',flexDirection:'column',}}>
+      <div class="interests" style={{width:'100%',height:'130px',marginTop:'5px',display:'flex',flexDirection:'column',marginLeft:'30px',}}>
     <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginRight:'0px',}}>
           Interests</div>
          <TextField  type='name' name='interests' multiline rows={4} variant='outlined'
                     sx={{
                       
                       marginInline: '10px',
-                      width: '722px',
+                      width: '780px',
                       marginLeft:'3px',
                       marginTop:'2px',
                       '& .MuiOutlinedInput-root': {
@@ -187,13 +187,13 @@ function UserDetails() {
                       },
                     }}/>
       </div>
-      <div style={{ marginTop:'70px',marginLeft:'0px',marginBottom:'20px',}}>
-      <div style={{color:'white',marginRight:'800px',fontSize:'90%'}}>Select Ticket Type</div>
+      <div style={{ marginTop:'70px',marginLeft:'0px',marginBottom:'20px',width:'50%',marginLeft:'30px',}}>
+      <div style={{color:'white',marginRight:'300px',fontSize:'90%',}}>Select Ticket Type</div>
 
       {/* Dropdown */}
       <select onChange={handleChange} defaultValue="" 
       style={{
-        width:'722px',
+        width:'780px',
         height:'50px',
         borderRadius:'20px',
         backgroundColor:'rgb(77,49,25,0.4)',
@@ -201,7 +201,8 @@ function UserDetails() {
         boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
         marginTop:'5px',
         borderColor:'rgb(0,0,0,0.3)',
-        marginRight:'220px'
+        marginLeft:'7px',
+        
         }}>
         <option value="" disabled style={{color:'black'}}>
           -- Choose an option --

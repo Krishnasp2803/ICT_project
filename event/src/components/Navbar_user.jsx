@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
-
+import logo from '../images/logo.png'
+import {Link} from 'react-router-dom'
 
 function Navbar() {
   const[hovered,setHoverColour]=useState(null)                //background colour change on hovering
@@ -19,70 +20,67 @@ function Navbar() {
        //backdropFilter:'blur(10px)',
        
        }}>
+        <Link to='/home'>
         <img
-        src="/logo192.png"
+        src={logo}
         className="profile-avatar"
         alt="logo"
         style={{
-          width: '50px',
-          height: '50px',
-          marginRight:'20px',
+          width: '90px',
+          height: 'auto',
+          marginRight:'10px',
           
-         
         }}
       />
-      <a //href="/"
-       style={{
+      </Link>
+      <Link
+        to="/home"
+        style={{
         color:'white',
-        marginRight:'690px',
+        marginRight:'900px',
         fontFamily:'Arizonia',
         fontSize:'58px',
+        textDecoration:'none'
 
-       }}>Event</a>
+       }}>Event</Link>
      
       <a href="/" style={
         {
-          textDecoration:hovered===5?'underline':'none',
+          textDecoration:'none',
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
           fontSize:'120%',
+          transform:hovered===5?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
         
         }}
         onMouseEnter={()=>handleMouseHover(5)}
-        onMouseLeave={handleMouseLeave}>Home</a>
+        onMouseLeave={handleMouseLeave}>
+          Home</a>
       <a href="/events" style={
         {
-          textDecoration:hovered===6?'underline':'none',
+          textDecoration:'none',
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
-          fontSize:'120%'
+          fontSize:'120%',
+          transform:hovered===6?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
           }}
           onMouseEnter={()=>handleMouseHover(6)}
-          onMouseLeave={handleMouseLeave}>Events</a>
+          onMouseLeave={handleMouseLeave}>
+            Events</a>
       <a href="/contact" style={
         {
-          textDecoration:hovered===7?'underline':'none',
+          textDecoration:'none',
           color:'white',
           marginRight:'30px',
           fontFamily:'Julius Sans One',
-          fontSize:'120%'
+          fontSize:'120%',
+          transform:hovered===7?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
           }}
           onMouseEnter={()=>handleMouseHover(7)}
-          onMouseLeave={handleMouseLeave}>Contact</a>
-      <a href="/login" style={
-        {
-          textDecoration:hovered===8?'underline':'none',
-          color:'white',
-          marginRight:'30px',
-          fontFamily:'Julius Sans One',
-          fontSize:'120%'
-          }}
-          onMouseEnter={()=>handleMouseHover(8)}
-          onMouseLeave={handleMouseLeave}>Login</a>
-      
-        
+          onMouseLeave={handleMouseLeave}>
+            Contact</a>
     
     </div>
   )

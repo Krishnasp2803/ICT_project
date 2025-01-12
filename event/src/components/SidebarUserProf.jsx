@@ -9,6 +9,11 @@ function SidebarUserProf({setActiveTab}) {
     const[hovered,setHoverColour]=useState(null)                //background colour change on hovering
     const handleMouseHover=(index)=>{setHoverColour(index)}
     const handleMouseLeave=()=>{setHoverColour(null)}
+    const [selected, setSelected] = useState(1);
+    const handleOptionClick = (index, tab) => {
+        setSelected(index); // Set the selected option
+        setActiveTab(tab); // Call the parent handler to update the active tab
+      };
 
     
   
@@ -32,7 +37,7 @@ function SidebarUserProf({setActiveTab}) {
         }> <IoPersonCircleSharp style={{
             fontSize:'700%',
             marginLeft:'10px',
-            marginTop:'20px',
+            marginTop:'10px',
             
         }}/>
         <h4 
@@ -48,7 +53,7 @@ function SidebarUserProf({setActiveTab}) {
                 <button style={{
                     width:'290px',
                     fontSize:'120%',
-                    backgroundColor:hovered===1?'#733a08':'#472609',
+                    backgroundColor:selected==1? '#733a08': hovered===1?'#733a08':'#472609',
                     border:'none',
                     padding:'20px',
                     color:'white',
@@ -56,23 +61,24 @@ function SidebarUserProf({setActiveTab}) {
                     fontFamily:'Crimson Pro',
                     borderTopRightRadius:'30px',
                     borderBottomRightRadius:'30px',
-                    transform:hovered===1?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
-                    boxShadow: hovered===1?'0 10px 10px rgba(0, 0, 0, 0.5)':'none' /* Add shadow for depth */
+                    transform:selected==1? '#733a08':hovered===1?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
+                    boxShadow:selected==1? '#733a08': hovered===1?'0 10px 10px rgba(0, 0, 0, 0.5)':'none' /* Add shadow for depth */
                     
 
                 }}
                 
-                onClick={() => setActiveTab('details')}
+                
                 onMouseEnter={()=>handleMouseHover(1)}
                 onMouseLeave={handleMouseLeave}
+                onClick={() => handleOptionClick(1, 'userprofile')}
                 >
-                    DETAILS</button>
+                    PROFILE</button>
            
                 <button style={{
                     width:'290px',
                     fontSize:'120%',
                     marginTop:'20px',
-                    backgroundColor:hovered===2?'#733a08':'#472609',
+                    backgroundColor:selected==2? '#733a08':hovered===2?'#733a08':'#472609',
                     border:'none',
                     padding:'20px',
                     color:'white',
@@ -80,14 +86,15 @@ function SidebarUserProf({setActiveTab}) {
                     fontFamily:'Crimson Pro',
                     borderTopRightRadius:'30px',
                     borderBottomRightRadius:'30px',
-                    transform:hovered===2?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
+                    transform:selected==2? '#733a08':hovered===2?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
                     boxShadow: hovered===2?'0 10px 10px rgba(0, 0, 0, 0.5)':'none' /* Add shadow for depth */
 
                 }}
                 
-                onClick={() => setActiveTab('registeredEvents')}
+                onClick={() => handleOptionClick(2, 'registeredEvents')}
                 onMouseEnter={()=>handleMouseHover(2)}
                 onMouseLeave={handleMouseLeave}
+
                 >
                     REGISTERED EVENTS
                 </button>

@@ -3,26 +3,26 @@ const mongoose = require('mongoose');
 
 // Admin Schema
 const adminSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  admin_name: { type: String, required: true },
+  admin_email: { type: String, required: true, unique: true },
+  admin_password: { type: String, required: true },
 }, {
   timestamps: true,
 });
 
 // Password Hashing Middleware
 adminSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
+  if (!this.isModified('admin_password')) return next();
 
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  this.admin_password = await bcrypt.hash(this.admin_password, salt);
   next();
 });
 
 // Password Match Method
 adminSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  return await bcrypt.compare(enteredPassword, this.admin_password);
 };
 
 const Admin = mongoose.model('Admin', adminSchema);
-module.exports = Admin;
+module.exports=Admin;

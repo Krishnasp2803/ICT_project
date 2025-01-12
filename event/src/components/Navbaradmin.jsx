@@ -51,7 +51,7 @@ function Navbar() {
           alt="Logo"
           style={{ width: '100px', height: 'auto',marginTop:'-5px' }} 
         />
-        <p style={{color:'white',marginTop:'35px',marginLeft:'10px'}}>USERNAME</p>
+        <p style={{color:'white',marginTop:'35px',marginLeft:'10px'}} value='USERNAME'></p>
       </div>
         
     </div>

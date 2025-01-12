@@ -7,7 +7,7 @@ import RegisteredEvents from '../components/RegisteredEvents'
 
 
 function UserProfile() {
-  const [activeTab, setActiveTab] = useState('details');
+  const [activeTab, setActiveTab] = useState('userprofile');
   
   return (
     
@@ -55,7 +55,7 @@ function UserProfile() {
               
             }}
           >
-            {activeTab === 'details' && <UserDetails />}
+            {activeTab === 'userprofile' && <UserDetails />}
             {activeTab === 'registeredEvents' && <RegisteredEvents />}
             
         </div>

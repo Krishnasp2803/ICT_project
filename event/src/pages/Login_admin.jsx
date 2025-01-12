@@ -9,19 +9,19 @@ import { useNavigate } from 'react-router-dom'
 function Login_admin() {
 
 const [message,setMessage]=useState('')
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+const [admin_email, setAdminEmail] = useState('');
+const [admin_password, setAdminPassword] = useState('');
 const navigate = useNavigate();
 
 const handleSubmit = async () => {
-  const logindata = { email, password };
+  const logindata = { admin_email, admin_password };
   
     
     // Create the logindata object to send
     
     try {
         // Send POST request to the backend
-        const response = await fetch('http://localhost:5000/api/admin/login', {
+        const response = await fetch('http://localhost:5000/api/admin/adminlogin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,9 +61,7 @@ const handleSubmit = async () => {
       alert(errorMessage);
     }
   
-    
-    
-};               // Call loginUser with the appropriate email and password
+};               // Call loginUser with the appropriate admin_email and admin_password
   return (
     <div
       style={{
@@ -96,12 +94,12 @@ const handleSubmit = async () => {
           ADMIN LOGIN
         </h2>
         <TextField
-          label="Email"
+          label="E-mail"
           type="text"
           fullWidth
           variant="outlined"
           margin="normal"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setAdminEmail(e.target.value)}
           InputProps={{
             style: { color: 'white' },
 
@@ -129,7 +127,7 @@ const handleSubmit = async () => {
           fullWidth
           variant="outlined"
           margin="normal"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setAdminPassword(e.target.value)}
           InputProps={{
             style: { color: 'white' },
           }}
@@ -171,7 +169,7 @@ const handleSubmit = async () => {
             fontSize:'18px'
           }}
         >
-          Forgot Password?
+          Forgot password?
         </p>
       </div>
     </div>

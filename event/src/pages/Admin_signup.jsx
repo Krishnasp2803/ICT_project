@@ -2,21 +2,23 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 function Admin_signup() {
-  const [name,setName]=useState('')
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
+  const [admin_name,setAdminName]=useState('')
+  const [admin_email,setAdminEmail]=useState('')
+  const [admin_password,setAdminPassword]=useState('')
   const [message,setMessage]=useState('')
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
 
     // Create the data object to send
-    const data = { name, email, password };
+    const data = { admin_name, admin_email, admin_password };
 
     try {
         // Send POST request to the backend
-        const response = await fetch('http://localhost:5000/api/admin/signup', {
+        const response = await fetch('http://localhost:5000/api/admin/adminsignup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -27,11 +29,12 @@ function Admin_signup() {
         // Process the response
         if (response.ok) {
             const jsonResponse = await response.json();
-            setMessage("Registration successful!");
+            alert("Registration successful!");
             // Optionally reset the form
-            setName('');
-            setEmail('');
-            setPassword('');
+            setAdminName('');
+            setAdminEmail('');
+            setAdminPassword('');
+            navigate('/adminhome');
 
         } else {
             const errorResponse = await response.json();
@@ -77,7 +80,7 @@ function Admin_signup() {
         <TextField
           label="Name"
           type="text"
-          onChange={(e) => { setName(e.target.value) }}
+          onChange={(e) => { setAdminName(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
@@ -102,9 +105,9 @@ function Admin_signup() {
           }}
         />
         <TextField
-          label="Email"
+          label="E-mail"
           type="text"
-          onChange={(e) => { setEmail(e.target.value) }}
+          onChange={(e) => { setAdminEmail(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
@@ -131,7 +134,7 @@ function Admin_signup() {
         <TextField
           label="Password"
           type="password"
-          onChange={(e) => { setPassword(e.target.value) }}
+          onChange={(e) => { setAdminPassword(e.target.value) }}
           fullWidth
           variant="outlined"
           margin="normal"
