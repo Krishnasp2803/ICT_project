@@ -11,6 +11,7 @@ function Calendar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null); // State for selected date
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar visibility
+ 
 
   useEffect(() => {
     const year = currentDate.getFullYear();
@@ -49,7 +50,8 @@ function Calendar() {
   };
 
   const handleDateClick = (day) => {
-    setSelectedDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
+    const newSelectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    setSelectedDate(newSelectedDate); // Set the selected date
     setIsSidebarOpen(true); // Open the sidebar
   };
 

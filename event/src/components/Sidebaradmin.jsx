@@ -188,15 +188,31 @@ function Sidebar({ selectedDate }) {
                 }}
               />
             </div>
-            <div style={{ flex: 1 }}>
-                <DatePicker 
-        selected={date} 
-        onChange={(date) => setEventDate(date)} 
-        dateFormat="yyyy-MM-dd"
-        InputProps={{ style: { color: 'white' } }}
-        InputLabelProps={{ style: { color: 'white' } }} 
-        />
-            </div>
+            <div style={{ width: '300px',  }}>
+      
+      <TextField
+        label="Selected Date"
+        value={selectedDate ? selectedDate.toLocaleDateString() : ''}
+        InputProps={{
+          readOnly: true, // Make the input read-only
+           style: { color: 'white' } 
+        }}
+        InputLabelProps={{ style: { color: 'white' } }}
+
+        fullWidth
+        margin="normal"
+        sx={{
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': { borderColor: 'white' },
+            '&:hover fieldset': { borderColor: 'white' },
+            '&.Mui-focused fieldset': { borderColor: 'white' },
+          },
+        }}
+        
+      />
+      {/* Other form fields for adding an event */}
+    </div>
+
           </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>

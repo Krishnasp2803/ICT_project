@@ -40,10 +40,10 @@ const WelcomePage = () => {
       </h3>
       <p>Please select an option to proceed:</p>
       <div>
-        <Link to="/user-login">
+        <Link to="/userlogin">
           <button style={styles.button}>Login as User</button>
         </Link>
-        <Link to="/admin-login">
+        <Link to="/alogin">
           <button style={styles.button}>Login as Admin</button>
         </Link>
       </div>

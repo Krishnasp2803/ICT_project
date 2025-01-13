@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin_signup from './pages/Admin_signup';
 import Usersignup from './pages/Usersignup';
 import UserLogin from './pages/UserLogin';
+import Welcomepage from './pages/Welcomepage';
 
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-        <Route index element={<Login_admin/>}/>
+        <Route index element={<Welcomepage/>}/>
+        <Route path='/alogin' element={<Login_admin/>} />
         <Route path='/asignup'element={<Admin_signup/>}></Route>
         <Route path='/adminhome'element={<AdminHome/>}></Route>
         <Route path='/aevent'element={<Allevents/>}></Route>

@@ -21,3 +21,25 @@ export const fetchUserData = async () => {
     throw error;
   }
 };
+
+export const fetchAdminData = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No token found. Please log in again.');
+    }
+
+    const response = await axios.get('http://localhost:5000/api/admin/adminhome', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching admin data:', error.message);
+    throw error;
+  }
+};
+
+

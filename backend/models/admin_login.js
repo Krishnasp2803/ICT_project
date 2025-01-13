@@ -24,5 +24,11 @@ adminSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.admin_password);
 };
 
+adminSchema.methods.generateToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: '1d',
+  });
+}
+
 const Admin = mongoose.model('Admin', adminSchema);
 module.exports=Admin;

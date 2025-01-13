@@ -63,7 +63,7 @@ const UserLoginPage = () => {
       if (response.status === 200) {
         localStorage.setItem('token', token); // Store the token in localStorage
 
-        alert("Login successful!");
+        
         navigate("/userprofile"); // Redirect to user profile page
       }
     } catch (error) {

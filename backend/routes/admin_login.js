@@ -1,6 +1,7 @@
 const express = require('express');
 const Admin = require('../models/admin_login');
 const router = express.Router();
+const authenticateAdmin = require('../middleware/authenticateAdmin');
 
 // Signup Route
 router.post('/adminsignup', async (req, res) => {
@@ -53,6 +54,21 @@ router.post('/adminlogin', async (req, res) => {
   } catch (error) {
     console.error(error); // Log the error for debugging
     res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+
+
+// Protect the profile route using the authenticateAdmin middleware
+router.get('/adminhome', authenticateAdmin, async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.admin.id); // Use the admin ID from the decoded JWT
+    if (!admin) {
+      return res.status(404).json({ message: 'admin not found' });
+    }
+    res.json(admin); // Send the admin details
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
