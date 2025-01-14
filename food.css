@@ -1,0 +1,446 @@
+.background-container {
+    position: fixed; /* Make it stay fixed on the viewport */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Cover the full width of the viewport */
+    height: 100vh; /* Cover the full height of the viewport */
+    background: url('food.jpg') no-repeat center center fixed; /* Background image */
+    background-size: cover; /* Ensure the image scales properly */
+    filter: blur(2px); /* Apply the blur effect */
+    z-index: -1; /* Place the background behind other content */
+      }
+  
+  /* Ensure the main content is above the background */
+  .main {
+    position: relative;
+    z-index: 1;
+  }
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ece9e6, #ffffff);
+}
+
+
+
+
+/* For the glass-button styling */
+.glass-button {
+    display: inline-block; /* Makes <a> behave like a button */
+    padding: 10px 20px; /* Add padding to the button */
+    text-align: center; /* Centers the text inside */
+    text-decoration: none; /* Removes underline from links */
+    color: black; /* Text color */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Optional: Makes the text bold */
+    background: rgba(255, 255, 255, 0.2); /* Glassy background */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: Light border */
+    border-radius: 8px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Glass effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for the button */
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.4); /* Slightly brighter background on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+}
+
+/* Style for the container */
+.subdiv1 {
+    display: flex; /* Align buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    justify-content: center; /* Centers buttons in the container */
+    padding: 20px; /* Add spacing around the container */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.firstdiv {
+    margin: 50px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    
+}
+
+
+.txt1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.events-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 250px;
+}
+
+.glass-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.glass-card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.glass-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+.back-button {
+    background: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background: #ff4747;
+}
+
+
+
+/* General styles remain the same */
+
+.events-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.glass-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.glass-card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.glass-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+.back-button {
+    background: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.back-button:hover {
+    background: #ff4747;
+}
+
+.navbar {
+            background-color: black;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px auto; /* Center the navbar */
+            width: 80%; /* Same width as the glass container */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+            height:60px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: gray;
+        }
+
+
+ .secdiiv {
+            width: 80%;
+            height:200px;
+            padding: 20px;
+            margin:0px;
+            background: url('map.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius:20px;
+        }               
+              
+
+
+
+
+
+
+
+
+
+
+.event-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%; /* Adjust based on your layout */
+        }
+
+        /* Event poster styling */
+        .event-poster {
+            flex: 1;
+            max-width: 40%;
+        }
+
+        .event-poster img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Event options (like/comment) styling */
+        .event-options {
+            flex: 1;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .event-options h3 {
+            margin-bottom: 10px;
+        }
+
+        .event-options button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .event-options button:hover {
+            background-color: #0056b3;
+        }
+
+
+
+
+
+.event-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.like-button, .comment-button {
+    background-color: #f1f1f1;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.like-button:hover, .comment-button:hover {
+    background-color: #ddd;
+}
+
+
+.event-poster img {
+    width: 200px; /* Set your desired width */
+    height: 300px; /* Set your desired height */
+    object-fit: cover; /* Ensures the image fits within the dimensions */
+    border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+
+
+.like-button, .comment-button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.like-button {
+    background-color:violet;
+    color: black;
+}
+
+.like-button.liked {
+    background-color: grey;
+}
+
+.comment-button {
+    background-color: lightgrey;
+    color: black;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#modal-comment-list p {
+    margin: 5px 0;
+    padding: 5px;
+    background: #
+
+}
+
+
+
+.event {
+            margin: 10px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .event img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .event img:hover {
+            transform: scale(1.1);
+        }
+
+
+
+
+
+ .button {
+            padding: 10px 15px; /* Add padding for better spacing */
+            font-size: 14px; /* Set the font size */
+            font-weight: bold; /* Make the text bold */
+            color: white; /* Text color */
+            background-color:violet; /* Blue background */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add rounded corners */
+            cursor: pointer; /* Change the cursor to a pointer on hover */
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition effects */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+        }
+
+        button:active {
+            background-color: #004494; /* Even darker blue on click */
+            transform: scale(1); /* Return to normal size */
+        }
+
+
+
+             
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Event Selector</title>
+    <link rel="stylesheet" href="mnpg.css">
+    <script src="script.js" defer></script> <!-- External JS File -->
+
+</head>
+<body>
+    <div class="background-container"></div>
+
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Events</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+<center>
+ <div class="secdiiv" background="map.jpg">
+    </div>
+</center>
+   
+
+    <center>
+        <div class="firstdiv">
+            <div class="subdiv1">
+                <h1 class="txt1">Find the Next Event You'll Want to Attend</h1>
+            </div>
+          <div class="subdiv1">
+    <a href="concerts.html" class="glass-button">Concerts</a>
+    <a href="foodfests.html" class="glass-button">Food Fests</a>
+    <a href="workshops.html" class="glass-button">Workshops</a>
+    <a href="exhibition.html" class="glass-button">Exhibitions</a>
+</div>
+
+
+            <div class="subdiv2">
+                <h2>Select a City for Concerts</h2>
+                <div class="dropdown">
+                    <label for="city-select">Choose a City:</label>
+                    <select id="city-select">
+                        <option value="" disabled selected>Choose a city</option>
+                        <option value="trivandrum">Trivandrum</option>
+                        <option value="calicut">Calicut</option>
+                        <option value="kochi">Kochi</option>
+                    </select>
+                </div>
+<br><br>
+                <button id="back-button" class="back-button" style="display: none;">Back</button>
+            </div>
+
+<div id="comment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modal-event-name">Comments</h3>
+            <textarea id="modal-comment-input" placeholder="Add your comment..."></textarea>
+            <button id="modal-add-comment-button">Add Comment</button>
+            <div id="modal-comment-list"></div>
+        </div>
+    </div>
+
+
+
+            
+            <div class="events-grid" id="events-container">
+                <!-- Event cards will be inserted dynamically here -->
+            </div>
+        </div>
+    </center>
+</body>
+</html>
