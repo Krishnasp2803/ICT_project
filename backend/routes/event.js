@@ -4,7 +4,7 @@ const router = express.Router();
 
 // Signup Route
 router.post('/newevent', async (req, res) => {
-  const { eventname, venue,time,hostname,ticketprice,imgURL,description,city,date} = req.body;
+  const { eventname,eventtype, venue,time,hostname,ticketprice,imgURL,description,city,date} = req.body;
 
   try {
     // Check if Event already exists
@@ -20,6 +20,7 @@ router.post('/newevent', async (req, res) => {
     res.status(201).json({
       _id: newEvent._id,
       eventname: newEvent.eventname,
+      eventtype: newEvent.eventtype,
       venue: newEvent.venue,
       time: newEvent.time,
       hostname: newEvent.hostname,

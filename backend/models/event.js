@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // Admin Schema
 const eventSchema = new mongoose.Schema({
   eventname: { type: String, required: true },
+  eventtype: { type: String, required: true },
   venue: { type: String, required: true },
   time: { type: String, required: true },
   hostname:{ type: String, required: true },
