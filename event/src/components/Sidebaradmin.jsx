@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { GoPlusCircle } from "react-icons/go";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import DatePicker from 'react-datepicker'; 
-import 'react-datepicker/dist/react-datepicker.css';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 import { IoIosClose } from "react-icons/io";
 
-
-function Sidebar({isSidebarOpen,onClose, selectedDate  }) {
+function Sidebar({ isSidebarOpen, onClose, selectedDate }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [eventname, setEventName] = useState('');
+  const [eventtype, setType] = useState('');
   const [time, setTime] = useState('');
   const [city, setCity] = useState('');
   const [venue, setVenue] = useState('');
@@ -17,163 +17,113 @@ function Sidebar({isSidebarOpen,onClose, selectedDate  }) {
   const [ticketprice, setTicketPrice] = useState('');
   const [imgURL, setImgUrl] = useState('');
   const [description, setDescription] = useState('');
-
   const [addedEvents, setAddedEvents] = useState([]);
   const [date, setEventDate] = useState(new Date());
-
 
   const togglePopup = () => {
     setIsPopupOpen(!isPopupOpen);
   };
 
-  const handleNameChange = (event) => {
-    setEventName(event.target.value);
-  };
-
-  const handleTimeChange = (event) => {
-    setTime(event.target.value);
-  };
   const handleAdd = async (event) => {
-    event.preventDefault(); // Prevent the default form submission
-
-    // Create the data object to send
-    const data = {  eventname, venue,time,hostname,ticketprice,imgURL,description,city,date };
+    event.preventDefault();
+    const data = { eventname, eventtype, venue, time, hostname, ticketprice, imgURL, description, city, date };
 
     try {
-        // Send POST request to the backend
-        const response = await fetch('http://localhost:5000/api/event/newevent', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
+      const response = await fetch('http://localhost:5000/api/event/newevent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-        // Process the response
-        if (response.ok) {
-            const jsonResponse = await response.json();
-            console.log("Response data:", jsonResponse);
-            alert("New Event Added Successfully");
-            // Optionally reset the form
-            setEventName('');
-            setVenue('');
-            setCity('');
-            setTime('');
-            setHostName('');
-            setTicketPrice('');
-            setImgUrl('');
-            setDescription('');
-
-
-        } else {
-            const errorResponse = await response.json();
-            console.error("Error response:", errorResponse);
-            alert(`Error: ${errorResponse.message}`);
-        }
-        setIsPopupOpen(false);
+      if (response.ok) {
+        alert("New Event Added Successfully");
+        setEventName('');
+        setType('');
+        setVenue('');
+        setCity('');
+        setTime('');
+        setHostName('');
+        setTicketPrice('');
+        setImgUrl('');
+        setDescription('');
+      } else {
+        const errorResponse = await response.json();
+        alert(`Error: ${errorResponse.message}`);
+      }
+      setIsPopupOpen(false);
     } catch (error) {
-        console.error('Error during registration:', error);
-        alert('An error occurred. Please try again later.');
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
     }
-};
+  };
 
-return (
-  <>
+  return (
+    <>
       {isSidebarOpen && (
-          <div
-              style={{
-                  flex: '0 0 30%',
-                  backgroundColor: 'rgb(0, 42, 59)',
-                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                  position: 'relative',
-                  height: '100vh',
-                  padding: '20px',
-                  overflowY: 'auto',
-                  color: 'white'
-              }}
-          >
-              <IoIosClose style={{ fontSize: '40px', marginLeft: '450px' }} onClick={onClose} />
+        <div style={{ flex: '0 0 30%', backgroundColor: 'rgb(0, 42, 59)', color: 'white', height: '100vh', padding: '20px' }}>
+          <IoIosClose style={{ fontSize: '40px', float: 'right' }} onClick={onClose} />
+          <h2 style={{ fontFamily: 'monospace', marginTop:'20px' }}>EVENT LIST</h2>
+          {selectedDate ? (
+            <div>
+              <p>Selected Date: {selectedDate.toDateString()}</p>
+              <GoPlusCircle
+                style={{ fontSize: '40px', color: 'white', cursor: 'pointer',marginLeft:'450px' }}
+                onClick={togglePopup}
+              />
+            </div>
+          ) : (
+            <p>Select a date to display more details here.</p>
+          )}
 
-      <h2 style={{ marginBottom: '20px', fontFamily: 'monospace', color: 'white' }}>EVENT LIST</h2>
-      {selectedDate ? (
-        <div>
-          <p>Selected Date: {selectedDate.toDateString()}</p>
-          <GoPlusCircle
-            style={{
-              fontSize: '50px',
-              color: 'white',
-              cursor: 'pointer',
-              position: 'absolute',
-              marginLeft:'160px',
-              marginTop:'10px',
-              zIndex: 1001
-            }}
-            onClick={togglePopup}
-          />
-          {addedEvents.map((event, index) => (
-            <p key={index} style={{ color: 'white' }}>
-              Name: {event.name}, Time: {event.time}
-            </p>
-          ))}
-        </div>
-      ) : (
-        <p>Select a date to display more details here.</p>
-      )}
+          {isPopupOpen && (
+            <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '700px', padding: '40px', backgroundColor: 'rgba(0, 42, 59, 0.9)', borderRadius: '10px', zIndex: 1000 }}>
+              <h2 style={{ textAlign: 'center', marginBottom: '20px', color: 'white' }}>ADD NEW EVENT</h2>
 
-
-      {/* Popup Window */}
-      {isPopupOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            display: 'flex',
-            flexDirection: 'column',
-            width: '700px',
-            padding: '40px',
-            background: 'rgba(0, 42, 59, 0.9)',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-            borderRadius: '10px',
-            border: '1px solid #fff',
-            backdropFilter: 'blur(10px)',
-            zIndex: 1000,
-          }}
-        >
-          <h2 style={{ textAlign: 'center', marginBottom: '20px', color: 'white' }}>ADD NEW EVENT</h2>
-
-          <TextField
-  label="Name"
-  type="text"
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <TextField
+                  label="Name"
+                  value={eventname}
+                  onChange={(event) => setEventName(event.target.value)}
+                  fullWidth
+                  InputProps={{ style: { color: 'white' } }}
+                  InputLabelProps={{ style: { color: 'white' } }}
+                  sx={{
+                    '& .MuiOutlinedInput-root': {
+                      '& fieldset': { borderColor: 'white' },
+                      '&:hover fieldset': { borderColor: 'white' },
+                      '&.Mui-focused fieldset': { borderColor: 'white' },
+                    },
+                  }}
+                />
+                <Select
+            value={eventtype}
+  onChange={(event) => setType(event.target.value)}
+  displayEmpty
   fullWidth
-  variant="outlined"
-  margin="normal"
-  value={eventname} // Ensure the state is bound to the field
-  onChange={(event) => setEventName(event.target.value)}// Handle input changes
-  InputProps={{
-    style: { color: 'white' },
-  }}
-  InputLabelProps={{
-    style: { color: 'white' },
-  }}
+  style={{ color: 'white' }}
+  InputProps={{ style: { color: 'white' } }}
+                  InputLabelProps={{ style: { color: 'white' } }}
   sx={{
     '& .MuiOutlinedInput-root': {
-      '& fieldset': { borderColor: 'white' },
-      '&:hover fieldset': { borderColor: 'white' },
-      '&.Mui-focused fieldset': { borderColor: 'white' },
+      '& fieldset': { borderColor: 'white' }, // Default outline
+      '&:hover fieldset': { borderColor: 'white' }, // Outline on hover
+      '&.Mui-focused fieldset': { borderColor: 'white' }, // Outline when focused
     },
-    '& .MuiInputLabel-root': {
-      color: 'white', // Ensures the label color is white
-    },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: 'white', // Label remains white when focused
+    '& .MuiSelect-icon': {
+      color: 'white', // Ensures the dropdown arrow icon is white
     },
   }}
-/>
+>
+                  <MenuItem value="" disabled>
+                    <em>Select Type</em>
+                  </MenuItem>
+                  <MenuItem value="Concerts">Concerts</MenuItem>
+                  <MenuItem value="Food Fest">Food Fest</MenuItem>
+                  <MenuItem value="Workshop">Workshop</MenuItem>
+                </Select>
+              </div>
 
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
             <div style={{ flex: 1 }}>
               <TextField
                 label="City"
@@ -363,5 +313,7 @@ return (
     </>
   );
 }
+
+
 
 export default Sidebar;
