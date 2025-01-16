@@ -1,58 +1,58 @@
-import React, { useState, useEffect } from "react";
-//import EventDetails from "../components/EventDetails";
+import React, { useEffect, useState } from 'react';
 
-const EventPage = () => {
+function EventDetails({ eventId }) {
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Simulate fetching event details from an API
-    const fetchEvent = async () => {
-      setLoading(true);
+    const fetchEventDetails = async () => {
       try {
-        // Simulated API response
-        const eventData = {
-          name: "Tech Conference 2025",
-          date: "January 15, 2025",
-          time: "10:00 AM - 5:00 PM",
-          organizer: "Tech Innovations Inc.",
-          location: "Tech Hub Auditorium, Silicon Valley",
-          description:
-            "Join us for a day of insightful talks and networking with tech leaders.",
-        };
-
-        // Simulate API delay
-        setTimeout(() => {
-          setEvent(eventData);
-          setLoading(false);
-        }, 1000);
+        const response = await fetch(`http://localhost:5000/api/event/events/${eventId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch event details');
+        }
+        const data = await response.json();
+        setEvent(data);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching event:", error);
+        console.error('Error:', error);
+        setError('An error occurred while fetching event details');
         setLoading(false);
       }
     };
 
-    fetchEvent();
-  }, []);
+    if (eventId) {
+      fetchEventDetails();
+    }
+  }, [eventId]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!event) {
+    return <div>Event not found</div>;
+  }
 
   return (
-    <div style={styles.page}>
-      {loading ? (
-        <p>Loading event details...</p>) 
-        : (    
-        //<EventDetails event={event}/>
-            <p>event details</p>
-        )}
+    <div style={{ padding: '20px', color: 'black' }}>
+      <h1>{event.eventname}</h1>
+      <p><strong>Type:</strong> {event.eventtype}</p>
+      <p><strong>Venue:</strong> {event.venue}</p>
+      <p><strong>Time:</strong> {event.time}</p>
+      <p><strong>Host:</strong> {event.hostname}</p>
+      <p><strong>Ticket Price:</strong> {event.ticketprice}</p>
+      <img src={event.imgURL} alt={event.eventname} style={{ width: '100%' }} />
+      <p><strong>Description:</strong> {event.description}</p>
+      <p><strong>City:</strong> {event.city}</p>
+      <p><strong>Date:</strong> {new Date(event.date).toLocaleDateString()}</p>
     </div>
   );
-};
+}
 
-const styles = {
-  page: {
-    padding: "20px",
-    backgroundColor: "#f4f4f4",
-    minHeight: "100vh",
-  },
-};
-
-export default EventPage;
+export default EventDetails;

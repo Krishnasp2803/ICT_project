@@ -12,10 +12,8 @@ import Usersignup from './pages/Usersignup';
 import UserLogin from './pages/UserLogin';
 import Welcomepage from './pages/Welcomepage';
 import Mainpage from './pages/Mainpage';
-import Foodfests from './components/Foodfests';
-import Concerts from './components/Concerts';
-import Workshops from './components/Workshops';
 import DetailsPage from './pages/DetailsPage';
+import EventList from './pages/EventList';
 
 function App() {
   return (
@@ -31,12 +29,9 @@ function App() {
         <Route path='/userprofile' element={<UserProfile/>} />
         <Route path='/usersignup' element={<Usersignup/>} />
         <Route path='/userlogin' element={<UserLogin/>} />
-        <Route path='/home' element={<Mainpage/>}>
-          <Route path='/home/concerts' element={<Concerts/>} />
-          <Route path='/home/foodfests' element={<Foodfests/>} />
-          <Route path='/home/workshops' element={<Workshops/>} />
-        </Route>
-        <Route path='/home/eventdetails' element={<DetailsPage/>} />
+        <Route path='/home' element={<Mainpage/>}/>
+        <Route path='/eventlist' element={<EventList/>}/>
+        <Route path='/eventdetails' element={<DetailsPage/>} />
 
         </Routes>
       </Router>

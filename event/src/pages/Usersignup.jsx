@@ -134,11 +134,11 @@ const UserSignUpPage = () => {
           <input type="checkbox" id="Terms" name="Terms" required />
           <label htmlFor="Terms">I agree to the terms and conditions</label>
         </div>
-        <button type="submit" style={styles.button} onClick={handleSubmit}>
+        <button type="submit" style={styles.button} onSubmit={handleSubmit}>
           Sign Up 
         </button>
         <p>
-          Already have an account? <Link to="/userlogin">Log In</Link>
+          Already have an account? <Link to='/userlogin'>Log In</Link>
         </p>
       </form>
     </div>

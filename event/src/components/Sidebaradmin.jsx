@@ -96,30 +96,32 @@ function Sidebar({ isSidebarOpen, onClose, selectedDate }) {
                   }}
                 />
                 <Select
-            value={eventtype}
-  onChange={(event) => setType(event.target.value)}
-  displayEmpty
-  fullWidth
-  style={{ color: 'white' }}
-  InputProps={{ style: { color: 'white' } }}
-                  InputLabelProps={{ style: { color: 'white' } }}
-  sx={{
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': { borderColor: 'white' }, // Default outline
-      '&:hover fieldset': { borderColor: 'white' }, // Outline on hover
-      '&.Mui-focused fieldset': { borderColor: 'white' }, // Outline when focused
-    },
-    '& .MuiSelect-icon': {
-      color: 'white', // Ensures the dropdown arrow icon is white
-    },
-  }}
->
+                    value={eventtype}
+                    label='eventtype'
+                    onChange={(event) => setType(event.target.value)}
+                    displayEmpty
+                    fullWidth
+                    style={{ color: 'white' }}
+                    InputProps={{ style: { color: 'white' } }}
+                                    InputLabelProps={{ style: { color: 'white' } }}
+                    sx={{
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': { borderColor: 'white' }, // Default outline
+                        '&:hover fieldset': { borderColor: 'white' }, // Outline on hover
+                        '&.Mui-focused fieldset': { borderColor: 'white' }, // Outline when focused
+                      },
+                      '& .MuiSelect-icon': {
+                        color: 'white', // Ensures the dropdown arrow icon is white
+                      },
+                    }}
+                  >
                   <MenuItem value="" disabled>
                     <em>Select Type</em>
                   </MenuItem>
-                  <MenuItem value="Concerts">Concerts</MenuItem>
-                  <MenuItem value="Food Fest">Food Fest</MenuItem>
-                  <MenuItem value="Workshop">Workshop</MenuItem>
+                  <MenuItem value="concert">Concerts</MenuItem>
+                  <MenuItem value="foodfest">Food Fest</MenuItem>
+                  <MenuItem value="workshop">Workshop</MenuItem>
+                  <MenuItem value="exhibition">Exhibition</MenuItem>
                 </Select>
               </div>
 

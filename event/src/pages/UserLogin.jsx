@@ -64,7 +64,7 @@ const UserLoginPage = () => {
         localStorage.setItem('token', token); // Store the token in localStorage
 
         
-        navigate("/userprofile"); // Redirect to user profile page
+        navigate("/home"); // Redirect to user profile page
       }
     } catch (error) {
       console.error("Login failed:", error);

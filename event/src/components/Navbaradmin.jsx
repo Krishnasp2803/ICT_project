@@ -42,7 +42,7 @@ function Navbar() {
             height:'50px',
             width:'100%'
         }}>
-        <Link to='/acalendar'>
+        <Link to='/calendar'>
         <button style={{
             height:'50px',
             marginLeft:'1200px',

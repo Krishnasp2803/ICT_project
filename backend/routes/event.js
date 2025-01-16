@@ -15,7 +15,7 @@ router.post('/newevent', async (req, res) => {
     }
 
     // Create new Event
-    const newEvent = await Event.create({ eventname, venue,time,hostname,ticketprice,imgURL,description,city,date});
+    const newEvent = await Event.create({ eventname,eventtype, venue,time,hostname,ticketprice,imgURL,description,city,date});
 
     res.status(201).json({
       _id: newEvent._id,
@@ -34,6 +34,35 @@ router.post('/newevent', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
+
+
+
+
+// Get eventlist by city, sorted by event type
+// Fetch all eventlist sorted by event type
+// In your routes file (e.g., event.js)
+
+// Fetch eventlist filtered by eventtype
+router.get('/eventlist', async (req, res) => {
+  const { eventtype } = req.query;  // Get the eventtype from the query string
+
+  try {
+    let eventlist;
+    
+    if (eventtype) {
+      // If eventtype is provided, filter eventlist by eventtype
+      eventlist = await Event.find({ eventtype }).sort({ eventtype: 1 });  // Sort eventlist by eventtype
+    } else {
+      // If no eventtype is provided, fetch all eventlist
+      eventlist = await Event.find().sort({ eventtype: 1 });
+    }
+    
+    res.status(200).json(eventlist);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching eventlist', error: error.message });
+  }
+});
+
 
 
 module.exports = router;

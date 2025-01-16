@@ -18,26 +18,11 @@ const eventsData = {
   ],
 };
 
-const EventApp = () => {
-  const [selectedCity, setSelectedCity] = useState("");
+const EventApp = ({ selectedCity }) => {
   const [currentEventComments, setCurrentEventComments] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
-  const handleCityChange = (e) => {
-    setSelectedCity(e.target.value);
-  };
-
-  const handleLike = (e) => {
-    const button = e.target;
-    if (!button.classList.contains("liked")) {
-      button.classList.add("liked");
-      button.textContent = "Liked";
-    } else {
-      button.classList.remove("liked");
-      button.textContent = "Like";
-    }
-  };
+ 
 
   const openCommentModal = (event) => {
     setSelectedEvent(event);
@@ -57,49 +42,33 @@ const EventApp = () => {
 
   return (
     <div>
-      <select onChange={handleCityChange}>
-        <option value="">Select a city</option>
-        <option value="trivandrum">Trivandrum</option>
-        <option value="calicut">Calicut</option>
-        <option value="kochi">Kochi</option>
-      </select>
-
-      {selectedCity && (
-        <button onClick={() => setSelectedCity("")} className="back-button">
-          Back
-        </button>
-      )}
-
       <div id="events-container">
-        {selectedCity &&
-          eventsData[selectedCity]?.map((event, index) => (
-            <div key={index} className="event-card">
-              <div className="event-poster">
-                <img src={event.image} alt="Event Poster" />
-              </div>
-              <div className="event-options">
-                <h3>{event.name}</h3>
-                <p>Date: {event.date}</p>
-                <p>Venue: {event.venue}</p>
-                <p>
-                  <button onClick={() => window.open(event.link, "_blank")} className="button">
-                    Event Details
-                  </button>
-                </p>
-              </div>
-              <div className="event-buttons">
-                <button className="like-button" onClick={handleLike}>
-                  Like
-                </button>
-                <button
-                  className="comment-button"
-                  onClick={() => openCommentModal(event)}
-                >
-                  Comment
-                </button>
-              </div>
+        {eventsData[selectedCity]?.map((event, index) => (
+          <div key={index} className="event-card">
+            <div className="event-poster">
+              <img src={event.image} alt="Event Poster" />
             </div>
-          ))}
+            <div className="event-options">
+              <h3>{event.name}</h3>
+              <p>Date: {event.date}</p>
+              <p>Venue: {event.venue}</p>
+              <p>
+                <button onClick={() => window.open(event.link, "_blank")} className="button">
+                  Event Details
+                </button>
+              </p>
+            </div>
+            <div className="event-buttons">
+              <button className="like-button">Like</button>
+              <button
+                className="comment-button"
+                onClick={() => openCommentModal(event)}
+              >
+                Comment
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       {isModalOpen && (
