@@ -4,9 +4,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import DatePicker from 'react-datepicker'; 
 import 'react-datepicker/dist/react-datepicker.css';
+import { IoIosClose } from "react-icons/io";
 
 
-function Sidebar({ selectedDate }) {
+function Sidebar({isSidebarOpen,onClose, selectedDate  }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [eventname, setEventName] = useState('');
   const [time, setTime] = useState('');
@@ -76,19 +77,23 @@ function Sidebar({ selectedDate }) {
     }
 };
 
-  return (
-    <div
-      style={{
-        flex: '0 0 30%',
-        backgroundColor: 'rgb(0, 42, 59)',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        position: 'relative',
-        height: '100vh',
-        padding: '20px',
-        overflowY: 'auto',
-        color: 'white'
-      }}
-    >
+return (
+  <>
+      {isSidebarOpen && (
+          <div
+              style={{
+                  flex: '0 0 30%',
+                  backgroundColor: 'rgb(0, 42, 59)',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  position: 'relative',
+                  height: '100vh',
+                  padding: '20px',
+                  overflowY: 'auto',
+                  color: 'white'
+              }}
+          >
+              <IoIosClose style={{ fontSize: '40px', marginLeft: '450px' }} onClick={onClose} />
+
       <h2 style={{ marginBottom: '20px', fontFamily: 'monospace', color: 'white' }}>EVENT LIST</h2>
       {selectedDate ? (
         <div>
@@ -354,6 +359,8 @@ function Sidebar({ selectedDate }) {
         ></div>
       )}
     </div>
+      )}
+    </>
   );
 }
 

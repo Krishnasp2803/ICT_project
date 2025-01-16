@@ -11,7 +11,11 @@ import Admin_signup from './pages/Admin_signup';
 import Usersignup from './pages/Usersignup';
 import UserLogin from './pages/UserLogin';
 import Welcomepage from './pages/Welcomepage';
-
+import Mainpage from './pages/Mainpage';
+import Foodfests from './components/Foodfests';
+import Concerts from './components/Concerts';
+import Workshops from './components/Workshops';
+import DetailsPage from './pages/DetailsPage';
 
 function App() {
   return (
@@ -23,10 +27,17 @@ function App() {
         <Route path='/asignup'element={<Admin_signup/>}></Route>
         <Route path='/adminhome'element={<AdminHome/>}></Route>
         <Route path='/aevent'element={<Allevents/>}></Route>
-        <Route path='/acalendar'element={<Calendar/>}></Route>
+        <Route path='/calendar'element={<Calendar/>}></Route>
         <Route path='/userprofile' element={<UserProfile/>} />
         <Route path='/usersignup' element={<Usersignup/>} />
         <Route path='/userlogin' element={<UserLogin/>} />
+        <Route path='/home' element={<Mainpage/>}>
+          <Route path='/home/concerts' element={<Concerts/>} />
+          <Route path='/home/foodfests' element={<Foodfests/>} />
+          <Route path='/home/workshops' element={<Workshops/>} />
+        </Route>
+        <Route path='/home/eventdetails' element={<DetailsPage/>} />
+
         </Routes>
       </Router>
     </div>

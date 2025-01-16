@@ -11,7 +11,7 @@ function Calendar() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null); // State for selected date
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar visibility
- 
+  const [addedEvents, setAddedEvents] = useState([]);
 
   useEffect(() => {
     const year = currentDate.getFullYear();
@@ -55,6 +55,10 @@ function Calendar() {
     setIsSidebarOpen(true); // Open the sidebar
   };
 
+  const handleAddEvent = (newEvent) => {
+    setAddedEvents([...addedEvents, newEvent]);
+  };
+
   const handleDateChange = (e, type) => {
     const value = parseInt(e.target.value, 10);
     let newDate = new Date(currentDate);
@@ -84,7 +88,7 @@ function Calendar() {
     currentDate.getFullYear() === today.getFullYear();
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', width: '100%' }}>
       {/* Calendar Section */}
       <div
         style={{
@@ -95,7 +99,8 @@ function Calendar() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           minHeight: '100vh',
-          overflow: 'hidden',
+          width: '100%'  // added width to calendar section as well
+
         }}
       >
         <div
@@ -250,7 +255,24 @@ function Calendar() {
       </div>
 
       {/* Sidebar Section */}
-      {isSidebarOpen && <Sidebar selectedDate={selectedDate} />}
+     <div
+        style={{
+          flex: isSidebarOpen ? '0 0 30%' : '0 0 0%',
+          transition: 'flex 0.3s ease',
+          backgroundColor: '#f4f4f4',
+          overflowY: 'auto',
+          boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+          display: isSidebarOpen ? 'block' : 'none',
+        }}
+      >
+        {isSidebarOpen &&  <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        selectedDate={selectedDate}
+        onAddEvent={handleAddEvent}
+      />}
+      </div>
+
 
     </div>
   );

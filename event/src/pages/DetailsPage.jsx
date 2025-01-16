@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EventDetails from "../components/EventDetails";
+//import EventDetails from "../components/EventDetails";
 
 const EventPage = () => {
   const [event, setEvent] = useState(null);
@@ -38,10 +38,11 @@ const EventPage = () => {
   return (
     <div style={styles.page}>
       {loading ? (
-        <p>Loading event details...</p>
-      ) : (
-        <EventDetails event={event} />
-      )}
+        <p>Loading event details...</p>) 
+        : (    
+        //<EventDetails event={event}/>
+            <p>event details</p>
+        )}
     </div>
   );
 };

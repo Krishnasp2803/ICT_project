@@ -29,7 +29,7 @@ export const fetchAdminData = async () => {
       throw new Error('No token found. Please log in again.');
     }
 
-    const response = await axios.get('http://localhost:5000/api/admin/adminhome', {
+    const response = await axios.get('http://localhost:5000/api/admin/adminlogin', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },

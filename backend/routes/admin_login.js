@@ -60,7 +60,7 @@ router.post('/adminlogin', async (req, res) => {
 
 
 // Protect the profile route using the authenticateAdmin middleware
-router.get('/adminhome', authenticateAdmin, async (req, res) => {
+router.get('/:id', authenticateAdmin, async (req, res) => {
   try {
     const admin = await Admin.findById(req.admin.id); // Use the admin ID from the decoded JWT
     if (!admin) {
