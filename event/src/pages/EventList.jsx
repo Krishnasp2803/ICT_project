@@ -50,7 +50,7 @@ function EventList() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
         {events.map((event) => (
           <div key={event._id} style={{ border: "1px solid #ccc", padding: "20px" }}>
-            <Link to='/detailspage'>
+            <Link to='/detailspage/:id'>
             <img
               src={event.imgURL}
               alt={event.eventname}
@@ -74,7 +74,7 @@ function EventList() {
               marginRight:'40%',
 
             }}>Date: {event.date}</p>
-            <Link to='/detailspage'>
+            <Link to='/detailspage/:id'>
             <Button 
               
               sx={{

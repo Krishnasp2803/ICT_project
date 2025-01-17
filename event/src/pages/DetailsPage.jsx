@@ -2,19 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function DetailsPage() {
-  const { id } = useParams();
+  const { id } = useParams();  // Get the event ID from the URL parameter
+  
   const [event, setEvent] = useState(null);
   const [tickets, setTickets] = useState(1);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Event ID from URL:", id);  // Log the event ID for debugging
+    if (!id) {
+      console.error("Event ID is missing!");
+      return;
+    }
+
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/event/${id}`);
+        const response = await fetch(`http://localhost:5000/api/event/${id}`);  // Use the actual ID
+        if (!response.ok) {
+          throw new Error("Failed to fetch event");
+        }
         const data = await response.json();
-        setEvent(data);
+        setEvent(data);  // Set event data if fetched successfully
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching event:", error);
+        setLoading(false);
       }
     };
 
@@ -24,11 +36,10 @@ function DetailsPage() {
   const handleBooking = async () => {
     try {
       const token = localStorage.getItem("token");
-  
       if (!token) {
         throw new Error("User is not logged in. Please log in to book tickets.");
       }
-  
+
       const response = await fetch(`http://localhost:5000/api/event/book`, {
         method: "POST",
         headers: {
@@ -37,11 +48,11 @@ function DetailsPage() {
         },
         body: JSON.stringify({ eventId: id, tickets }),
       });
-  
+
       if (!response.ok) {
         throw new Error("Failed to book tickets");
       }
-  
+
       const data = await response.json();
       alert("Booking successful!");
     } catch (error) {
@@ -49,7 +60,7 @@ function DetailsPage() {
       alert(error.message);
     }
   };
-  
+
   if (loading) {
     return <div>Loading event details...</div>;
   }
@@ -57,7 +68,6 @@ function DetailsPage() {
   if (!event) {
     return <div>No event details found.</div>;
   }
-  
 
   return (
     <div>

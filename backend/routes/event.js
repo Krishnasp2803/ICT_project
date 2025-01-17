@@ -57,11 +57,21 @@ router.get('/eventlist', async (req, res) => {
     res.status(500).json({ message: 'Error fetching eventlist', error: error.message }); 
   }
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 0ae71ad08b74cf9e9e536daaced9b527bb906e43
 
 
+
+// Correct route setup for fetching event details by ID
+router.get('/:id', async (req, res) => {
+  const eventId = req.params.id;  // Access the event ID from the URL parameter
+  try {
+    const event = await Event.findById(eventId);  // Fetch the event from the database
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+    res.json(event);  // Send the event data back in the response
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching event', error: error.message });
+  }
+});
 
 module.exports = router;
