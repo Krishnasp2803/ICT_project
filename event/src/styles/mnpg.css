@@ -4,9 +4,9 @@
     left: 0;
     width: 100vw; /* Cover the full width of the viewport */
     height: 100vh; /* Cover the full height of the viewport */
-    background: url('../images/muus1.jpg') no-repeat center center fixed; /* Background image */
+    background: url('../images/main.png') no-repeat center center fixed; /* Background image */
     background-size: cover; /* Ensure the image scales properly */
-    filter: blur(2px); /* Apply the blur effect */
+     /* Apply the blur effect */
     z-index: -1; /* Place the background behind other content */
       }
   
