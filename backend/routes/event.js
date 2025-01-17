@@ -38,10 +38,6 @@ router.post('/newevent', async (req, res) => {
 
 
 
-// Get eventlist by city, sorted by event type
-// Fetch all eventlist sorted by event type
-// In your routes file (e.g., event.js)
-
 // Fetch eventlist filtered by eventtype
 router.get('/eventlist', async (req, res) => {
   const { eventtype } = req.query;  // Get the eventtype from the query string

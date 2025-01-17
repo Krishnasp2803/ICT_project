@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from '@mui/material/Button'; 
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -48,15 +49,45 @@ function EventList() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
         {events.map((event) => (
           <div key={event._id} style={{ border: "1px solid #ccc", padding: "20px" }}>
+            {/*<Link to>*/}
             <img
               src={event.imgURL}
               alt={event.eventname}
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
             />
+            
             <h2>{event.eventname}</h2>
-            <p>Type: {event.eventtype}</p>
-            <p>Venue: {event.venue}</p>
-            <p>Date: {event.date}</p>
+            <p style={{
+              fontSize:'140%',
+              marginRight:'70%',
+
+            }}> Type: {event.eventtype}</p>
+            <p style={{
+              fontSize:'140%',
+              marginRight:'60%',
+
+            }}>Venue: {event.venue}</p>
+            <p style={{
+              fontSize:'140%',
+              marginRight:'40%',
+
+            }}>Date: {event.date}</p>
+            <Button 
+              sx={{
+                
+                padding: "10px 20px",
+                fontSize: "16px",
+                "&:hover": {
+                  backgroundColor: 'lightblue', // Hover color
+                },
+
+              
+              }}>
+            
+              Register
+
+            </Button>
+            
           </div>
         ))}
       </div>
