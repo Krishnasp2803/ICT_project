@@ -15,7 +15,7 @@ router.post('/newevent', async (req, res) => {
     }
 
     // Create new Event
-    const newEvent = await Event.create({ eventname,eventtype, venue,time,hostname,ticketprice,imgURL,description,city,date});
+    const newEvent = await Event.create({ eventname,eventtype, venue,time,hostname,ticketprice,imgURL,description,city, date: dateObject});
 
     res.status(201).json({
       _id: newEvent._id,
@@ -44,28 +44,20 @@ router.post('/newevent', async (req, res) => {
 
 // Fetch eventlist filtered by eventtype
 router.get('/eventlist', async (req, res) => {
-  const { eventtype, city } = req.query; // Get eventtype and city from the query string
-
+  const { eventtype, city } = req.query; 
   try {
     let query = {};
-    
-    // Add filters to the query based on the provided parameters
-    if (eventtype) {
-      query.eventtype = eventtype;
-    }
-    if (city) {
-      query.city = city;
-    }
+    if (eventtype) query.eventtype = eventtype;
+    if (city) query.city = city;
 
-    // Fetch and sort events based on the query
     const eventlist = await Event.find(query).sort({ eventtype: 1 });
-
-    res.status(200).json(eventlist);
+    res.json(eventlist);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching eventlist', error: error.message });
+    console.error('Error fetching eventlist:', error); // Log the error for debugging
+    res.status(500).json({ message: 'Error fetching eventlist', error: error.message }); 
   }
 });
-npm
+
 
 
 
