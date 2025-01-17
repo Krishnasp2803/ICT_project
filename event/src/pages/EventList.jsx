@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from '@mui/material/Button'; 
+import { Link } from "react-router-dom";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -49,12 +50,13 @@ function EventList() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
         {events.map((event) => (
           <div key={event._id} style={{ border: "1px solid #ccc", padding: "20px" }}>
-            {/*<Link to>*/}
+            <Link to='/detailspage'>
             <img
               src={event.imgURL}
               alt={event.eventname}
               style={{ width: "100%", height: "200px", objectFit: "cover" }}
             />
+            </Link>
             
             <h2>{event.eventname}</h2>
             <p style={{
@@ -72,7 +74,9 @@ function EventList() {
               marginRight:'40%',
 
             }}>Date: {event.date}</p>
+            <Link to='/detailspage'>
             <Button 
+              
               sx={{
                 
                 padding: "10px 20px",
@@ -87,6 +91,7 @@ function EventList() {
               Register
 
             </Button>
+            </Link>
             
           </div>
         ))}

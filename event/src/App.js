@@ -15,6 +15,7 @@ import Mainpage from './pages/Mainpage';
 import DetailsPage from './pages/DetailsPage';
 import EventList from './pages/EventList';
 
+
 function App() {
   return (
     <div className="App">
@@ -31,7 +32,8 @@ function App() {
         <Route path='/userlogin' element={<UserLogin/>} />
         <Route path='/home' element={<Mainpage/>}/>
         <Route path='/eventlist' element={<EventList/>}/>
-        <Route path='/eventdetails' element={<DetailsPage/>} />
+        <Route path='/detailspage' element={<DetailsPage/>} />
+        
 
         </Routes>
       </Router>

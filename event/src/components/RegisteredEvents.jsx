@@ -2,6 +2,26 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 
 function RegisteredEvents() {
+    const [bookings, setBookings] = useState([]);
+    const userId = "YOUR_USER_ID"; // Replace with actual user ID
+  
+    useEffect(() => {
+      const fetchBookings = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/event/bookings/${userId}`);
+          const data = await response.json();
+          setBookings(data);
+        } catch (error) {
+          console.error("Error fetching bookings:", error);
+        }
+      };
+  
+      fetchBookings();
+    }, [userId]);
+  
+    if (bookings.length === 0) {
+      return <div>No bookings found.</div>;
+    }
   return (
     <div style={{
         width: '1000px',
