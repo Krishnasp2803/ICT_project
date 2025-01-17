@@ -40,19 +40,18 @@ const Mainpage = () => {
 
           {/* Event Type Links */}
           <div className="subdiv1">
-          <Link to="/eventlist?eventtype=concert">
-            <a className="glass-button">Concerts</a>
-          </Link>
-          <Link to="/eventlist?eventtype=foodfest">
-            <a className="glass-button">Food Fests</a>
-          </Link>
-          <Link to="/eventlist?eventtype=workshop">
-            <a className="glass-button">Workshops</a>
-          </Link>
-          <Link to="/eventlist?eventtype=exhibition">
-            <a className="glass-button">Exhibitions</a>
-          </Link>
-
+          <Link to={`/eventlist?eventtype=concert&city=${selectedCity}`}>
+          <button onClick={() => handleEventTypeClick("concert")}>Concerts</button>
+        </Link>
+        <Link to={`/eventlist?eventtype=foodfest&city=${selectedCity}`}>
+          <button onClick={() => handleEventTypeClick("foodfest")}>Food Fests</button>
+        </Link>
+        <Link to={`/eventlist?eventtype=workshop&city=${selectedCity}`}>
+          <button onClick={() => handleEventTypeClick("workshop")}>Workshops</button>
+        </Link>
+        <Link to={`/eventlist?eventtype=exhibition&city=${selectedCity}`}>
+          <button onClick={() => handleEventTypeClick("exhibition")}>Exhibitions</button>
+        </Link>
           </div>
 
           {/* City Selector */}

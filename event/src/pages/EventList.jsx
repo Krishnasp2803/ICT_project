@@ -10,13 +10,16 @@ function EventList() {
   // Get event type from the query parameters
   const searchParams = new URLSearchParams(window.location.search);
   const eventTypeFromUrl = searchParams.get("eventtype");
+  const cityFromUrl = searchParams.get("city");
 
   useEffect(() => {
     console.log("Event type from URL:", eventTypeFromUrl);
+    console.log("City from URL:", cityFromUrl);
+
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/event/eventlist?eventtype=${eventTypeFromUrl}`
+           `http://localhost:5000/api/event/eventlist?eventtype=${eventTypeFromUrl}&city=${cityFromUrl}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -31,22 +34,22 @@ function EventList() {
       }
     };
 
-    if (eventTypeFromUrl) {
+    if (eventTypeFromUrl && cityFromUrl) {
       fetchEvents();
     }
-  }, [eventTypeFromUrl]);
+  }, [eventTypeFromUrl,cityFromUrl]);
 
   if (loading) {
     return <div>Loading events...</div>;
   }
 
   if (events.length === 0) {
-    return <div>No events available for {eventTypeFromUrl}.</div>;
+    return <div>No events available for {eventTypeFromUrl} in {cityFromUrl}.</div>;
   }
 
   return (
     <div>
-      <h1 style={{textTransform:'uppercase'}}>{eventTypeFromUrl} Events</h1>
+      <h1 style={{textTransform:'uppercase'}}>{eventTypeFromUrl} Events in {cityFromUrl}</h1>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
         {events.map((event) => (
           <div key={event._id} style={{ border: "1px solid #ccc", padding: "20px" }}>
