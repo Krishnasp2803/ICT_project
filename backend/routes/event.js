@@ -38,26 +38,34 @@ router.post('/newevent', async (req, res) => {
 
 
 
+// Get eventlist by city, sorted by event type
+// Fetch all eventlist sorted by event type
+// In your routes file (e.g., event.js)
+
 // Fetch eventlist filtered by eventtype
 router.get('/eventlist', async (req, res) => {
-  const { eventtype } = req.query;  // Get the eventtype from the query string
+  const { eventtype, city } = req.query; // Get eventtype and city from the query string
 
   try {
-    let eventlist;
+    let query = {};
     
+    // Add filters to the query based on the provided parameters
     if (eventtype) {
-      // If eventtype is provided, filter eventlist by eventtype
-      eventlist = await Event.find({ eventtype }).sort({ eventtype: 1 });  // Sort eventlist by eventtype
-    } else {
-      // If no eventtype is provided, fetch all eventlist
-      eventlist = await Event.find().sort({ eventtype: 1 });
+      query.eventtype = eventtype;
     }
-    
+    if (city) {
+      query.city = city;
+    }
+
+    // Fetch and sort events based on the query
+    const eventlist = await Event.find(query).sort({ eventtype: 1 });
+
     res.status(200).json(eventlist);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching eventlist', error: error.message });
   }
 });
+npm
 
 
 
