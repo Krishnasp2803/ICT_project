@@ -5,6 +5,7 @@ function DetailsPage() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [tickets, setTickets] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -22,22 +23,41 @@ function DetailsPage() {
 
   const handleBooking = async () => {
     try {
-      const userId = "YOUR_USER_ID"; // Replace with actual user ID
+      const token = localStorage.getItem("token");
+  
+      if (!token) {
+        throw new Error("User is not logged in. Please log in to book tickets.");
+      }
+  
       const response = await fetch(`http://localhost:5000/api/event/book`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, eventId: id, tickets }),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ eventId: id, tickets }),
       });
+  
+      if (!response.ok) {
+        throw new Error("Failed to book tickets");
+      }
+  
       const data = await response.json();
       alert("Booking successful!");
     } catch (error) {
       console.error("Error booking tickets:", error);
+      alert(error.message);
     }
   };
+  
+  if (loading) {
+    return <div>Loading event details...</div>;
+  }
 
   if (!event) {
-    return <div>Loading...</div>;
+    return <div>No event details found.</div>;
   }
+  
 
   return (
     <div>

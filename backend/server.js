@@ -25,6 +25,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/userprofile', authenticateUser, userRoutes);
 app.use('/api/admin/adminhome', authenticateAdmin, adminRoutes);
 
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

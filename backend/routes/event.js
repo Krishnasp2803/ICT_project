@@ -65,7 +65,6 @@ router.get('/eventlist', async (req, res) => {
     res.status(500).json({ message: 'Error fetching eventlist', error: error.message });
   }
 });
-npm
 
 
 
