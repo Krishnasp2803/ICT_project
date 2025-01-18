@@ -21,7 +21,7 @@ const handleSubmit = async () => {
     
     try {
         // Send POST request to the backend
-        const response = await fetch('http://localhost:5000/api/admin/adminlogin', {
+        const response = await fetch('https://ict-project-nzej.onrender.com/api/admin/adminlogin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

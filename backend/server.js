@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000', // Frontend URL
+  origin: 'https://ict-project-nzej.onrender.com', // Frontend URL
   methods: 'GET,POST',
   allowedHeaders: 'Content-Type, Authorization',
 }));

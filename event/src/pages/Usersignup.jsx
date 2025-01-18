@@ -60,7 +60,7 @@ const UserSignUpPage = () => {
 
     try {
         // Send POST request to the backend
-        const response = await fetch('http://localhost:5000/api/user/usersignup', {
+        const response = await fetch('https://ict-project-nzej.onrender.com/api/user/usersignup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
