@@ -19,7 +19,7 @@ function EventList() {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-           `https://ict-project-nzej.onrender.com/api/event/eventlist?eventtype=${eventTypeFromUrl}&city=${cityFromUrl}`
+           `https://ict-project-h0nu.onrender.com/api/event/eventlist?eventtype=${eventTypeFromUrl}&city=${cityFromUrl}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch events");

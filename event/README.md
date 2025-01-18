@@ -9,7 +9,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [https://ict-project-nzej.onrender.com](https://ict-project-nzej.onrender.com) to view it in your browser.
+Open [https://ict-project-h0nu.onrender.com](https://ict-project-h0nu.onrender.com) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.

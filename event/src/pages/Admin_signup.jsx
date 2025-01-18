@@ -18,7 +18,7 @@ function Admin_signup() {
 
     try {
         // Send POST request to the backend
-        const response = await fetch('https://ict-project-nzej.onrender.com/api/admin/adminsignup', {
+        const response = await fetch('https://ict-project-h0nu.onrender.com/api/admin/adminsignup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

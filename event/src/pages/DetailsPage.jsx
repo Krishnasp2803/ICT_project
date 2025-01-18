@@ -41,7 +41,7 @@ function DetailsPage() {
 
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`https://ict-project-nzej.onrender.com/api/event/${id}`);
+        const response = await fetch(`https://ict-project-h0nu.onrender.com/api/event/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch event");
         }
@@ -68,7 +68,7 @@ function DetailsPage() {
         throw new Error("Please log in to book tickets.");
       }
 
-      const response = await fetch("https://ict-project-nzej.onrender.com/api/event/book", {
+      const response = await fetch("https://ict-project-h0nu.onrender.com/api/event/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
