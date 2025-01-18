@@ -1,6 +1,6 @@
 
 import './App.css';
-import Allevents from './pages/Allevents';
+
 import{BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import AdminHome from './pages/AdminHome';
 import Login_admin from './pages/Login_admin';
@@ -25,7 +25,6 @@ function App() {
         <Route path='/alogin' element={<Login_admin/>} />
         <Route path='/asignup'element={<Admin_signup/>}></Route>
         <Route path='/adminhome'element={<AdminHome/>}></Route>
-        <Route path='/aevent'element={<Allevents/>}></Route>
         <Route path='/calendar'element={<Calendar/>}></Route>
         <Route path='/userprofile' element={<UserProfile/>} />
         <Route path='/usersignup' element={<Usersignup/>} />
