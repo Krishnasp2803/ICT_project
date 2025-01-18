@@ -102,7 +102,7 @@ function UserDetails() {
       <div class="last-name" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
         <div style={{color:'white',fontSize:'80%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>
           Last Name</div>
-         <TextField  type='name' name='name' value='Warner'
+         <TextField  type='name' name='name'
                     sx={{
                       
                       marginInline: '10px',

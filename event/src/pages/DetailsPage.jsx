@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 function DetailsPage() {
   const { id } = useParams(); // Get the event ID from the URL parameter
@@ -106,103 +106,114 @@ function DetailsPage() {
         color: "#fff",
         padding: "20px",
         width: "100%",
-        margin: "auto",
+        height: "100vh", // Cover the full height of the viewport
+        margin: "0",
         backgroundImage: `url(${event.imgURL})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        borderRadius: "10px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        overflow: "hidden",
         position: "relative",
-        backdropFilter:"unset",
-        
+        overflow: "hidden",
       }}
     >
-      <div style={{
-      
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black
-      zIndex: 1, // Ensure the overlay is above the background but below the content
-      borderRadius: "10px",
-      }}>
+      {/* Black Overlay */}
       <div
         style={{
-          
+          position: "fixed", // Cover the entire viewport
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent black
+          zIndex: 1,
+        }}
+      ></div>
+
+      {/* Content */}
+      <div
+        style={{
+          position: "relative", // Ensure content is above the overlay
+          zIndex: 2,
           padding: "20px",
-          borderRadius: "10px",
-          width:'800px'
+          display: "flex",
+          alignItems: "flex-start", // Align items at the start
+          gap: "20px",
         }}
       >
-        <h1
-          style={{
-            fontSize: "2.5rem",
-            color: "#f1c40f",
-            textAlign: "center",
-            marginBottom: "20px",
-          }}
-        >
-          {event.eventname}
-        </h1>
+        {/* Image */}
         <img
           src={event.imgURL}
           alt={event.eventname}
           style={{
-            width: "100%",
-            height: "auto",
+            width: "300px",
+            height: "500px",
             borderRadius: "10px",
-            marginBottom: "20px",
           }}
         />
-        <p style={{ fontSize: "1.2rem", lineHeight: "1.6", color: "#ecf0f1" }}>
-          {event.description}
-        </p>
-        <p>
-          <strong>Venue:</strong> {event.venue}
-        </p>
-        <p>
-          <strong>Date:</strong> {event.date}
-        </p>
-        <p>
-          <strong>Ticket Price:</strong> ${event.ticketprice}
-        </p>
-        <p>
-          <strong>Host Name:</strong> {event.hostname}
-        </p>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <input
-            type="number"
-            value={tickets}
-            min="1"
-            onChange={(e) => setTickets(e.target.value)}
-            disabled={isBooked}
+
+        {/* Text Content */}
+        <div style={{ flex: 1, textAlign: "left",marginLeft:'20px' }}>
+          <h1
             style={{
-              width: "80px",
-              padding: "5px",
-              fontSize: "1rem",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
-          />
-          <button
-            onClick={() => setShowModal(true)}
-            disabled={isBooked}
-            style={{
-              padding: "10px 20px",
-              backgroundColor: isBooked ? "#95a5a6" : "#27ae60",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: isBooked ? "not-allowed" : "pointer",
+              fontSize: "50px",
+              color: "#f1c40f",
+              marginBottom: "20px",
             }}
           >
-            {isBooked ? "Booked" : "Book Tickets"}
-          </button>
-        </div>
-      </div>
+            {event.eventname}
+          </h1>
+          <p
+            style={{
+              fontSize: "25px",
+              
+              color: "#ecf0f1",
+              marginBottom: "20px",
+            }}
+          >
+            {event.description}
+          </p>
+          <p 
+          style={{
+            fontSize: "25px",
 
+          }}>
+            <strong>Venue:</strong> {event.venue}
+          </p>
+          <p style={{
+            fontSize: "25px",
+
+          }}>
+            <strong>Date:</strong> {event.date}
+          </p>
+          <p style={{
+            fontSize: "25px",
+
+          }}>
+            <strong>Ticket Price:</strong> ${event.ticketprice}
+          </p>
+          <p style={{
+            fontSize: "25px",
+
+          }}>
+            <strong>Host Name:</strong> {event.hostname}
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <input
+              type="number"
+              value={tickets}
+              min="1"
+              onChange={(e) => setTickets(e.target.value)}
+              disabled={isBooked}
+              style={{
+                width: "80px",
+                padding: "5px",
+                fontSize: "1rem",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+              }}
+            />
+             <button onClick={() => setShowModal(true)} disabled={isBooked}>
+        {isBooked ? "Booked" : "Book Tickets"}
+      </button>
       {/* Custom Modal */}
       {showModal && (
         <div
@@ -229,10 +240,8 @@ function DetailsPage() {
               textAlign: "center",
             }}
           >
-            <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>
-              Confirm Booking
-            </h3>
-            <p style={{ marginBottom: "20px" }}>
+            <h3>Confirm Booking</h3>
+            <p style={{color:'black'}}>
               Are you sure you want to book {tickets} ticket(s) for this event?
             </p>
             <div>
@@ -240,8 +249,7 @@ function DetailsPage() {
                 style={{
                   margin: "5px",
                   padding: "10px 20px",
-                  backgroundColor: "#e74c3c",
-                  color: "white",
+                  backgroundColor: "#ddd",
                   border: "none",
                   borderRadius: "4px",
                   cursor: "pointer",
@@ -254,7 +262,7 @@ function DetailsPage() {
                 style={{
                   margin: "5px",
                   padding: "10px 20px",
-                  backgroundColor: "#27ae60",
+                  backgroundColor: "#007bff",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
@@ -268,6 +276,10 @@ function DetailsPage() {
           </div>
         </div>
       )}
+
+      
+          </div>
+        </div>
       </div>
     </div>
   );
