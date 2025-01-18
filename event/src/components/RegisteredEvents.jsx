@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button } from 'react-bootstrap';
-import {jwtDecode} from "jwt-decode"; // Correct import for jwt-decode
+import { Button } from "react-bootstrap";
+import { jwtDecode } from "jwt-decode"; // Correct import for jwt-decode
 
 function RegisteredEvents() {
   const [bookings, setBookings] = useState([]);
@@ -44,11 +44,14 @@ function RegisteredEvents() {
           throw new Error("No token found");
         }
 
-        const response = await fetch('http://localhost:5000/api/event/booking/me', { // Update the route for fetching bookings
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "http://localhost:5000/api/event/booking/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const text = await response.text(); // Read as text first
 
@@ -77,12 +80,10 @@ function RegisteredEvents() {
   return (
     <div
       style={{
-        width: "1000px",
-        display:'flex',
+        width: "1100px",
         padding: "20px",
         borderRadius: "12px",
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-        textAlign: "center",
         marginLeft: "400px",
         backgroundColor: "rgb(77,49,25,0.8)",
         zIndex: "1000",
@@ -92,23 +93,89 @@ function RegisteredEvents() {
         style={{
           color: "white",
           fontFamily: "LimeLight",
+          textAlign: "center",
         }}
       >
         Registered Events
       </h2>
       <div
-        className="row"
-        style={{ width: "100%", height: "400px", display: "flex", marginTop: "50px" }}
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          marginTop: "20px",
+        }}
       >
         {bookings.map((booking) => (
           <div
             key={booking._id}
-            style={{ marginBottom: "20px", padding: "10px", border: "1px solid #ccc", color:'white' }}
+            style={{
+              flex: "1 1 calc(40% - 20px)",
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: "rgba(44, 17, 3, 0.4)",
+              boxShadow: "0 8px 16px rgba(0, 0, 0, 0.4)",
+              borderRadius: "10px",
+              padding: "20px",
+              height: "auto",
+              marginBottom: "0px",
+            }}
           >
-            <h3>{booking.eventId.eventname}</h3>
-            <p>Venue: {booking.eventId.venue}</p>
-            <p>Date: {booking.eventId.date}</p>
-            <p>Tickets Booked: {booking.tickets}</p>
+            <img
+              src={booking.eventId.imgURL}
+              alt={booking.eventId.eventname}
+              style={{
+                width: "300px",
+                height: "50%",
+                borderRadius: "10px",
+                marginLeft: "100px",
+              }}
+            />
+            <div
+              style={{
+                marginTop: "0px", // Removed additional margin space
+                fontFamily: "Crimson Pro",
+                color: "white",
+                height:'200px'
+              }}
+            >
+              <h3 style={{
+                marginTop:'25px',
+
+              }}>{booking.eventId.eventname}</h3>
+              <p style={{ fontSize: "24px" }}>Venue: {booking.eventId.venue}</p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "0px", // Removed any spacing between buttons and container
+                }}
+              >
+                <Button
+                  style={{
+                    borderRadius: "15px",
+                    backgroundColor: "rgb(160, 17, 7)",
+                    color: "white",
+                    border: "none",
+                    fontSize: "20px",
+                  }}
+                >
+                  {booking.eventId.date}
+                </Button>
+                <Button
+                  style={{
+                    borderRadius: "15px",
+                    backgroundColor: "rgb(160, 17, 7)",
+                    color: "white",
+                    border: "none",
+                    fontSize: "20px",
+                  }}
+                >
+                  Tickets: {booking.tickets}
+                </Button>
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -9,6 +9,37 @@
      /* Apply the blur effect */
     z-index: -1; /* Place the background behind other content */
       }
+
+
+      .navbar {
+        display: flex;
+        justify-content: space-between; /* Space out the navbar items */
+        align-items: center;
+        padding: 10px 20px;
+        background-color: transparent; /* Remove any background color */
+      }
+      
+      .navbar img {
+        width: 50px; /* Adjust logo size */
+        height: auto;
+      }
+      
+      .navbar a {
+        color: white;
+        font-family: 'Arizonia';
+        font-size: 30px;
+        text-decoration: none;
+        margin-left: 0px;
+      }
+      
+      /* Profile Link Styling */
+      .profile-link {
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-decoration: none;
+        margin-right: 20px; /* To ensure there's some space between profile and the edge */
+      }
   
   /* Ensure the main content is above the background */
   .main {
@@ -29,11 +60,11 @@ body {
 /* For the glass-button styling */
 .glass-button {
     display: inline-block; /* Makes <a> behave like a button */
-    padding: 10px 20px; /* Add padding to the button */
+    padding: 20px 70px; /* Add padding to the button */
     text-align: center; /* Centers the text inside */
     text-decoration: none; /* Removes underline from links */
     color: black; /* Text color */
-    font-size: 16px; /* Font size */
+    font-size: 25px; /* Font size */
     font-weight: bold; /* Optional: Makes the text bold */
     background: rgba(255, 255, 255, 0.2); /* Glassy background */
     border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: Light border */
@@ -55,7 +86,9 @@ body {
     display: flex; /* Align buttons horizontally */
     gap: 10px; /* Space between buttons */
     justify-content: center; /* Centers buttons in the container */
-    padding: 20px; /* Add spacing around the container */
+    padding-top: 50px; /* Add spacing around the container */
+
+
 }
 
 
@@ -66,12 +99,12 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     width: 80%;
-    
+    height:650px;
 }
 
 
 .txt1 {
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
     color: #333;
 }
@@ -181,39 +214,17 @@ body {
     background: #ff4747;
 }
 
-.navbar {
-            background-color: black;
-            border-radius: 10px;
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px auto; /* Center the navbar */
-            width: 80%; /* Same width as the glass container */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
-            height:60px;
-        }
 
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .navbar a:hover {
-            color: gray;
-        }
 
 
  .secdiiv {
             width: 80%;
-            height:200px;
+            height:100px;
             padding: 20px;
-            margin:0px;
-            background: url('../images/map.jpg') no-repeat center center;
+            margin-left: 250px;
             background-size: cover;
             border-radius:20px;
+            margin-top:60px
         }               
               
 
@@ -265,7 +276,6 @@ body {
         .event-options button:hover {
             background-color: #0056b3;
         }
-
 
 
 

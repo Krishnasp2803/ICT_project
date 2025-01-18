@@ -116,7 +116,7 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-    <div class="contact-det" style={{width:'100%',height:'130px',marginTop:'10px',display:'flex',marginLeft:'30px',}}>
+    <div class="contact-det" style={{width:'100%',height:'130px',marginTop:'20px',display:'flex',marginLeft:'30px',}}>
       <div class="email" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
         <div style={{color:'white',fontSize:'90%',width:'70px',height:'20px',marginTop:'5px',marginLeft:'0px',marginRight:'10px'}}>
           E-mail</div>
@@ -152,27 +152,7 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-    <div class="address" style={{width:'100%',height:'130px',marginTop:'0px',display:'flex',flexDirection:'column',marginLeft:'30px',}}>
-    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginLeft:'0px',}}>
-          Address</div>
-         <TextField  type='address' name='name'  multiline rows={4} variant='outlined'
-                    sx={{
-                      
-                      marginInline: '10px',
-                      width: '90%',
-                      marginLeft:'3px',
-                      
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px', 
-                        color:'white',
-                        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
-                        height:'130px',
-                        alignItems:'flex-start',
-                      },
-                      
-                    }}/>
-      </div>
-      <div class="age-gender" style={{width:'100%',height:'130px',marginTop:'65px',display:'flex',marginLeft:'30px',}}>
+      <div class="age-gender" style={{width:'100%',height:'130px',marginTop:'40px',display:'flex',marginLeft:'30px',}}>
       <div class="age" style={{color:'white',width:'50%',height:'90px',display:'flex',flexDirection:'column',}}>
         <div style={{color:'white',fontSize:'90%',width:'70px',height:'20px',marginTop:'5px',marginLeft:'0px',marginRight:'10px'}}>
           Age</div>
@@ -210,25 +190,7 @@ function UserDetails() {
                     }}/>
       </div>
     </div>
-      <div class="interests" style={{width:'100%',height:'130px',marginTop:'5px',display:'flex',flexDirection:'column',marginLeft:'30px',}}>
-    <div style={{color:'white',fontSize:'90%',width:'100px',height:'20px',marginTop:'5px',marginRight:'0px',}}>
-          Interests</div>
-         <TextField  type='name' name='interests' multiline rows={4} variant='outlined'
-                    sx={{
-                      
-                      marginInline: '10px',
-                      width: '90%',
-                      marginLeft:'3px',
-                      marginTop:'2px',
-                      '& .MuiOutlinedInput-root': {
-                        borderRadius: '20px', 
-                        color:'white',
-                        boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
-                        height:'130px',
-                      },
-                    }}/>
-      </div>
-      <div style={{ marginTop:'70px',marginLeft:'0px',marginBottom:'20px',width:'50%',marginLeft:'30px',}}>
+      <div style={{ marginTop:'40px',marginLeft:'0px',marginBottom:'20px',width:'50%',marginLeft:'30px',}}>
       <div style={{color:'white',marginRight:'300px',fontSize:'90%',}}>Select Ticket Type</div>
 
       {/* Dropdown */}

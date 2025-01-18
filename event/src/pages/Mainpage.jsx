@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/mnpg.css"; // Import your CSS file
 import "../images/map.jpg";
+import logo from '../images/logo.png'
 
 const Mainpage = () => {
   const [selectedCity, setSelectedCity] = useState("");
@@ -24,15 +25,18 @@ const Mainpage = () => {
 
       {/* Navbar */}
       <div className="navbar">
-        <a href="/home">Home</a>
-        <a href="#">Events</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-        <a href="/userprofile">Profile</a>
+        <div>
+          <Link to='/home'>
+            <img src={logo} className="profile-avatar" alt="logo" />
+          </Link>
+          <Link to="/home">Celestial</Link>
+        </div>
+
+        <Link to="/userprofile" className="profile-link">Profile</Link>
       </div>
 
       {/* Main Section */}
-      <div className="secdiiv" style={{ backgroundImage: "url(map.jpg)" }}>
+      <div className="secdiiv">
         <div className="firstdiv">
           {/* Heading */}
           <div className="subdiv1">
@@ -42,25 +46,36 @@ const Mainpage = () => {
           {/* Event Type Links */}
           <div className="subdiv1">
           <Link to={`/eventlist?eventtype=concert&city=${selectedCity}`}>
-          <button onClick={() => handleEventTypeClick("concert")}>Concerts</button>
+          <button className="glass-button" onClick={() => handleEventTypeClick("concert")}>Concerts</button>
         </Link>
         <Link to={`/eventlist?eventtype=foodfest&city=${selectedCity}`}>
-          <button onClick={() => handleEventTypeClick("foodfest")}>Food Fests</button>
+          <button className="glass-button" onClick={() => handleEventTypeClick("foodfest")}>Food Fests</button>
         </Link>
         <Link to={`/eventlist?eventtype=workshop&city=${selectedCity}`}>
-          <button onClick={() => handleEventTypeClick("workshop")}>Workshops</button>
+          <button className="glass-button" onClick={() => handleEventTypeClick("workshop")}>Workshops</button>
         </Link>
         <Link to={`/eventlist?eventtype=exhibition&city=${selectedCity}`}>
-          <button onClick={() => handleEventTypeClick("exhibition")}>Exhibitions</button>
+          <button className="glass-button" onClick={() => handleEventTypeClick("exhibition")}>Exhibitions</button>
         </Link>
           </div>
 
           {/* City Selector */}
-          <div className="subdiv2">
-            <h2>Select a City for Concerts</h2>
+          <div>
             <div className="dropdown">
-              <label htmlFor="city-select">Choose a City:</label>
-              <select
+              <label htmlFor="city-select" style={{fontSize:'25px', fontFamily:'Ariel'}}
+               >Select City:</label>
+              <select style={{
+                marginTop:'40px',
+                padding: '10px',
+                fontSize: '16px',
+                border: '1px solid #ccc',
+                borderRadius: '5px',
+                backgroundColor: '#f9f9f9',
+                cursor: 'pointer',
+                outline: 'none',
+                width:'300px',
+                marginLeft:'20px'
+              }}
                 id="city-select"
                 value={selectedCity}
                 onChange={handleCityChange}
