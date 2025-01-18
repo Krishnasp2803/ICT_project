@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://ict-project-nzej.onrender.com', // Frontend URL
+  origin: 'https://cheery-sundae-582e27.netlify.app', // Frontend URL
   methods: 'GET,POST',
   allowedHeaders: 'Content-Type, Authorization',
 }));
