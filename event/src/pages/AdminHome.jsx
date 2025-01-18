@@ -41,7 +41,11 @@ function AdminHome() {
     // Fetch events for the selected day
     try {
       const response = await axios.get(`/api/eventlist`, {
+<<<<<<< HEAD
         params: { date:`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${day}`}, // Send selected date to the backend
+=======
+        params: { date: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${day}` }, // Send selected date to the backend
+>>>>>>> cb0f59547da5c7397e16220ceb1791aa71b3385f
       });
       setEvents(response.data); // Update events state with fetched data
 
@@ -193,4 +197,8 @@ function AdminHome() {
   );
 }
 
+<<<<<<< HEAD
 export default AdminHome;
+=======
+export default AdminHome;
+>>>>>>> cb0f59547da5c7397e16220ceb1791aa71b3385f
