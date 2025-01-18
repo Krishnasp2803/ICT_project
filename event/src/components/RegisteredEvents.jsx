@@ -1,27 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Button } from 'react-bootstrap';
 
 function RegisteredEvents() {
     const [bookings, setBookings] = useState([]);
-    const userId = "YOUR_USER_ID"; // Replace with actual user ID
+    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
       const fetchBookings = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/event/bookings/${userId}`);
+          const token = localStorage.getItem("token");
+          if (!token) {
+            throw new Error("Please log in to view bookings.");
+          }
+  
+          const response = await fetch(`http://localhost:5000/api/event/bookings/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+  
+          if (!response.ok) {
+            throw new Error("Failed to fetch bookings");
+          }
+
           const data = await response.json();
-          setBookings(data);
-        } catch (error) {
-          console.error("Error fetching bookings:", error);
+        setBookings(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching bookings:", error);
+        alert(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
+        }, []);
+
+        if (loading) {
+            return <div>Loading your bookings...</div>;
         }
-      };
-  
-      fetchBookings();
-    }, [userId]);
-  
-    if (bookings.length === 0) {
-      return <div>No bookings found.</div>;
-    }
+
+        if (bookings.length === 0) {
+            return <div>No bookings found.</div>;
+        }
+
+
+
+
   return (
     <div style={{
         width: '1000px',
@@ -40,335 +63,18 @@ function RegisteredEvents() {
       }}>Registered Events</h2>
       <div class='row' style={{width:'100%',height:'400px',display: 'flex', marginTop: '20px'}}>
         
-        <div class='row-element'style={{
-            width:'40%',
-            height:'100%',
-            backgroundColor:'rgba(44, 17, 3, 0.4)',
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
-            marginLeft:'20px',
-        
-            
-        }}>
-            <div class='event-image'>
-                <img src='/eventImg_1.jpg'
-                    style={{
-                       width:'200px',
-                        height:'250px',
-                        margin: '0', // Remove any default margin
-                        padding: '0',
-                        display: 'block',
-                        marginLeft: '100px',
-                        marginTop:'10px',
-                      }}/>
-            </div>
-            <div class='event-det'
-                style={{
-                    width:'100%',
-                    height:'140px',
-                    
-                    marginTop:'0px',
-                    margin: '0', // Remove any default margin
-                    padding: '0', 
-
-                }}>
-                <div class='event-name'style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Name
-                </div>
-                <div class='event-place' style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Place
-                </div>
-                <div class='event-date-ticket' style={{display:'flex',justifyContent:'space-around',marginTop:'10px'}}>
-                    <div><Button  style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>20 January</Button></div>
-                    <div><Button style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>Get Ticket</Button></div>
-                </div>
-
-            </div>
-        
+      {bookings.map((booking) => (
+        <div key={booking._id} style={{ marginBottom: "20px", padding: "10px", border: "1px solid #ccc" }}>
+          <h3>{booking.eventId.eventname}</h3>
+          <p>Venue: {booking.eventId.venue}</p>
+          <p>Date: {booking.eventId.date}</p>
+          <p>Tickets Booked: {booking.tickets}</p>
+          </div>
+      ))}
         </div>
-        <div class='row-element-2'style={{
-            width:'40%',
-            height:'100%',
-            backgroundColor:'rgba(44, 17, 3, 0.4)',
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
-            marginLeft:'160px',
-        
-            
-        }}>
-            <div class='event-image-2'>
-                <img src='/eventImg_2.jpg'
-                    style={{
-                       width:'200px',
-                        height:'250px',
-                        margin: '0', // Remove any default margin
-                        padding: '0',
-                        display: 'block',
-                        marginLeft: '100px',
-                        marginTop:'10px',
-                      }}/>
-            </div>
-            <div class='event-det-2'
-                style={{
-                    width:'100%',
-                    height:'140px',
-                    
-                    marginTop:'0px',
-                    margin: '0', // Remove any default margin
-                    padding: '0', 
-
-                }}>
-                <div class='event-name-2'style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Name
-                </div>
-                <div class='event-place-2' style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Place
-                </div>
-                <div class='event-date-ticket-2' style={{display:'flex',justifyContent:'space-around',marginTop:'10px'}}>
-                    <div><Button  style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>14 March</Button></div>
-                    <div><Button style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>Get Ticket</Button></div>
-                </div>
-
-            </div>
-        
         </div>
-      </div>
-      <div class='row' style={{width:'100%',height:'400px',display: 'flex', marginTop: '20px'}}>
-        
-        <div class='row-element'style={{
-            width:'40%',
-            height:'100%',
-            backgroundColor:'rgba(44, 17, 3, 0.4)',
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
-            marginLeft:'20px',
-        
-            
-        }}>
-            <div class='event-image'>
-                <img src='/eventImg_1.jpg'
-                    style={{
-                       width:'200px',
-                        height:'250px',
-                        margin: '0', // Remove any default margin
-                        padding: '0',
-                        display: 'block',
-                        marginLeft: '100px',
-                        marginTop:'10px',
-                      }}/>
-            </div>
-            <div class='event-det'
-                style={{
-                    width:'100%',
-                    height:'140px',
-                    
-                    marginTop:'0px',
-                    margin: '0', // Remove any default margin
-                    padding: '0', 
-
-                }}>
-                <div class='event-name'style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Name
-                </div>
-                <div class='event-place' style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Place
-                </div>
-                <div class='event-date-ticket' style={{display:'flex',justifyContent:'space-around',marginTop:'10px'}}>
-                    <div><Button  style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>20 January</Button></div>
-                    <div><Button style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>Get Ticket</Button></div>
-                </div>
-
-            </div>
-        
-        </div>
-        <div class='row-element-2'style={{
-            width:'40%',
-            height:'100%',
-            backgroundColor:'rgba(44, 17, 3, 0.4)',
-            boxShadow: '0 8px 16px rgba(0, 0, 0, 0.4)',
-            marginLeft:'160px',
-        
-            
-        }}>
-            <div class='event-image-2'>
-                <img src='/eventImg_2.jpg'
-                    style={{
-                       width:'200px',
-                        height:'250px',
-                        margin: '0', // Remove any default margin
-                        padding: '0',
-                        display: 'block',
-                        marginLeft: '100px',
-                        marginTop:'10px',
-                      }}/>
-            </div>
-            <div class='event-det-2'
-                style={{
-                    width:'100%',
-                    height:'140px',
-                    
-                    marginTop:'0px',
-                    margin: '0', // Remove any default margin
-                    padding: '0', 
-
-                }}>
-                <div class='event-name-2'style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Name
-                </div>
-                <div class='event-place-2' style={{
-                    width:'95%',
-                    height:'40px',
-                    
-                    textAlign:'left',
-                    paddingLeft:'20px',
-                    alignContent:'center',
-                    fontFamily:'Crimson Pro',
-                    fontSize:'130%',
-                    color:'white',
-                }}>
-                    Event Place
-                </div>
-                <div class='event-date-ticket-2' style={{display:'flex',justifyContent:'space-around',marginTop:'10px'}}>
-                    <div><Button  style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>14 March</Button></div>
-                    <div><Button style={{
-                        width:'100px',
-                        height:'30px',
-                        borderRadius:'15px',
-                        backgroundColor:'rgb(160, 17, 7)',
-                        color:'white',
-                        border:'none',
-                        boxShadow:'0 8px 16px rgba(0, 0, 0, 0.7)',
-                        }}>Get Ticket</Button></div>
-                </div>
-
-            </div>
-        
-        </div>
-      </div>
-    </div>
+      
+    
    
   );
 }

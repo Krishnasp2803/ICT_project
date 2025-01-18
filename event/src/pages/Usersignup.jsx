@@ -93,7 +93,7 @@ const UserSignUpPage = () => {
   return (
     <div style={styles.body}>
       <h2 style={styles.h2}>User Sign Up</h2>
-      <form style={styles.form}>
+      <form style={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"
           id="Username"
@@ -134,7 +134,7 @@ const UserSignUpPage = () => {
           <input type="checkbox" id="Terms" name="Terms" required />
           <label htmlFor="Terms">I agree to the terms and conditions</label>
         </div>
-        <button type="submit" style={styles.button} onSubmit={handleSubmit}>
+        <button type="submit" style={styles.button} >
           Sign Up 
         </button>
         <p>

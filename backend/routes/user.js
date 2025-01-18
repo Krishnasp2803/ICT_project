@@ -21,9 +21,6 @@ router.post('/usersignup', async (req, res) => {
     // Create new user
     const newUser = await User.create({ user_name, user_email, user_password, user_contactno });
 
-    
-    
-    
     res.status(201).json({
       _id: newUser._id,
       user_name: newUser.user_name,

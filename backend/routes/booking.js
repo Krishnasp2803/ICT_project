@@ -6,7 +6,7 @@ const Event = require('../models/event');
 const authenticateUser = require('../middleware/authenticateUser');
 
 router.post('/book', authenticateUser, async (req, res) => {
-  const { eventId, tickets } = req.body;
+  const { eventId, tickets} = req.body;
 
   try {
     const event = await Event.findById(eventId);
@@ -28,14 +28,16 @@ router.post('/book', authenticateUser, async (req, res) => {
 
 
 //Get Registered Events for a User
-  router.get('/bookings/:userId', async (req, res) => {
+
+  router.get('/bookings/me', authenticateUser, async (req, res) => {
     try {
-      const bookings = await Booking.find({ userId: req.params.userId }).populate('eventId');
+      const bookings = await Booking.find({ userId: req.user._id }).populate('eventId');
       res.status(200).json(bookings);
     } catch (error) {
       res.status(500).json({ message: 'Error fetching bookings', error: error.message });
     }
   });
+  
 
   module.exports = router;
   

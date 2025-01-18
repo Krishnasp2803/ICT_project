@@ -28,6 +28,7 @@ const Mainpage = () => {
         <a href="#">Events</a>
         <a href="#">About Us</a>
         <a href="#">Contact</a>
+        <a href="/userprofile">Profile</a>
       </div>
 
       {/* Main Section */}
@@ -67,9 +68,9 @@ const Mainpage = () => {
                 <option value="" disabled>
                   Choose a city
                 </option>
-                <option value="trivandrum">Trivandrum</option>
-                <option value="calicut">Calicut</option>
-                <option value="kochi">Kochi</option>
+                <option value="Trivandrum">Trivandrum</option>
+                <option value="Calicut">Calicut</option>
+                <option value="Kochi">Kochi</option>
               </select>
             </div>
             <br />

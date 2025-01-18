@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function EventList() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedEventType, setSelectedEventType] = useState("");
+ // const [selectedEventType, setSelectedEventType] = useState("");
 
   // Get event type from the query parameters
   const searchParams = new URLSearchParams(window.location.search);
@@ -53,7 +53,7 @@ function EventList() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px" }}>
         {events.map((event) => (
           <div key={event._id} style={{ border: "1px solid #ccc", padding: "20px" }}>
-            <Link to='/detailspage/:id'>
+            <Link to={`/detailspage/${event._id}`}>
             <img
               src={event.imgURL}
               alt={event.eventname}
@@ -77,7 +77,7 @@ function EventList() {
               marginRight:'40%',
 
             }}>Date: {event.date}</p>
-            <Link to='/detailspage/:id'>
+            <Link to={`/detailspage/${event._id}`}>
             <Button 
               
               sx={{

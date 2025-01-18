@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 // Admin Schema
 const eventSchema = new mongoose.Schema({
+  
   eventname: { type: String, required: true },
   eventtype: { type: String, required: true },
   venue: { type: String, required: true },
@@ -17,6 +18,9 @@ const eventSchema = new mongoose.Schema({
   timestamps: true,
 });
 
+
+
 const Event = mongoose.model('Event', eventSchema);
+
 
 module.exports=Event;
