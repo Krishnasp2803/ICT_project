@@ -41,7 +41,7 @@ function DetailsPage() {
       if (!token) {
         throw new Error("Please log in to book tickets.");
       }
-
+  
       const response = await fetch(`http://localhost:5000/api/event/book`, {
         method: "POST",
         headers: {
@@ -50,29 +50,32 @@ function DetailsPage() {
         },
         body: JSON.stringify({ eventId: id, tickets }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to book tickets");
       }
-
+  
       const data = await response.json();
-      setIsBooked(true); // Update the button state to "Booked"
-      setShowModal(false); // Close the modal after booking
+      setIsBooked(true); // Update the button state
+      setShowModal(false); // Close the modal
       alert("Booking successful!");
+  
+      // Redirect to registered events or update the UI
+      //navigate('/registered-events'); // Redirect to the registered events page
+  
     } catch (error) {
       console.error("Error booking tickets:", error);
       alert(error.message);
     }
   };
-
   if (loading) {
-    return <div>Loading event details...</div>;
+    return <div>Loading...</div>;  // Show loading text while fetching event data
   }
 
   if (!event) {
-    return <div>No event details found.</div>;
+    return <div>Event not found.</div>;  // Show an error message if event data is not found
   }
-
+  
   return (
     <div>
       <h1>{event.eventname}</h1>
@@ -119,5 +122,4 @@ function DetailsPage() {
     </div>
   );
 }
-
 export default DetailsPage;

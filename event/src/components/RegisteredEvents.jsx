@@ -6,30 +6,31 @@ function RegisteredEvents() {
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-      const fetchBookings = async () => {
-        try {
+        const fetchBookings = async () => {
           const token = localStorage.getItem("token");
           if (!token) {
-            throw new Error("Please log in to view bookings.");
+            alert("Please log in to view your bookings.");
+            return;
           }
-  
-          const response = await fetch(`http://localhost:5000/api/event/bookings/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-  
-          if (!response.ok) {
-            throw new Error("Failed to fetch bookings");
+          try {
+            const response = await fetch('http://localhost:5000/api/event/registeredevents', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+    
+            if (!response.ok) {
+              throw new Error("Failed to fetch bookings");
+            }
+    
+            const data = await response.json();
+            setBookings(data);
+          } catch (error) {
+            console.error("Error fetching bookings:", error);
+            alert(error.message);
           }
+        };
 
-          const data = await response.json();
-        setBookings(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching bookings:", error);
-        alert(error.message);
-        setLoading(false);
-      }
-    };
 
     fetchBookings();
         }, []);

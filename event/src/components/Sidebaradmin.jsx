@@ -26,8 +26,16 @@ function Sidebar({ isSidebarOpen, onClose, selectedDate }) {
 
   const handleAdd = async (event) => {
     event.preventDefault();
-    const data = { eventname, eventtype, venue, time, hostname, ticketprice, imgURL, description, city, date };
-
+    const formattedDate = new Date(selectedDate);
+    console.log(selectedDate);
+    formattedDate.setHours(0, 0, 0, 0);
+    console.log(selectedDate);
+    const isoDate = selectedDate.toISOString();
+    console.log(isoDate); // '2024-01-26T18:30:00.000Z' (UTC)
+    const dateOnly = isoDate.split('T')[0];
+    console.log(dateOnly); 
+    
+    const data = { eventname, eventtype, venue, time, hostname, ticketprice, imgURL, description, city, date: dateOnly };
     try {
       const response = await fetch('http://localhost:5000/api/event/newevent', {
         method: 'POST',

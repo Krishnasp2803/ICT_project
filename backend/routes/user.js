@@ -76,4 +76,20 @@ router.get('/userprofile', authenticateUser, async (req, res) => {
     }
   });
 
+
+  // Registered Events Route (For displaying bookings)
+router.get('/registeredevents', authenticateUser, async (req, res) => {
+  try {
+    const bookings = await Booking.find({ userId: req.user._id }).populate('eventId'); // Populate the event details
+    if (!bookings) {
+      return res.status(404).json({ message: 'No bookings found' });
+    }
+
+    res.status(200).json(bookings);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching bookings', error: error.message });
+  }
+});
+
+
 module.exports = router;
