@@ -9,7 +9,7 @@ export const fetchUserData = async () => {
       throw new Error('No token found. Please log in again.');
     }
 
-    const response = await axios.get('http://localhost:5000/api/user/userprofile', {
+    const response = await axios.get('https://ict-project-nzej.onrender.com/api/user/userprofile', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
@@ -29,7 +29,7 @@ export const fetchAdminData = async () => {
       throw new Error('No token found. Please log in again.');
     }
 
-    const response = await axios.get('http://localhost:5000/api/admin/adminhome', {
+    const response = await axios.get('https://ict-project-nzej.onrender.com/api/admin/adminhome', {
       headers: {
         'Authorization': `Bearer ${token}`,
       },
