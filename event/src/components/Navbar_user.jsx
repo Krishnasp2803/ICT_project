@@ -18,6 +18,7 @@ function Navbar() {
        position:'fixed',
        zIndex: '1000',
        //backdropFilter:'blur(10px)',
+       marginLeft:'20px'
        
        }}>
         <Link to='/home'>
@@ -39,16 +40,16 @@ function Navbar() {
         color:'white',
         marginRight:'67%',
         fontFamily:'Arizonia',
-        fontSize:'70px',
+        fontSize:'50px',
         textDecoration:'none'
 
-       }}>Event</Link>
+       }}>Celestial</Link>
      
       <a href="/home" style={
         {
           textDecoration:'none',
           color:'white',
-          marginRight:'30px',
+          marginRight:'26px',
           fontFamily:'Julius Sans One',
           fontSize:'150%',
           transform:hovered===5?'scale(1.1)':'scale(1.0)', /* Slightly increase size */
