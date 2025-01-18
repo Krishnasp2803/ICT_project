@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbaradmin';
 import bg from '../images/eventbg.png';
+import axios from 'axios'; // For making API requests
 
 function AdminHome() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [daysInMonth, setDaysInMonth] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null); // To store the selected day
+  const [events, setEvents] = useState([]); // Store events for the selected day
 
   useEffect(() => {
     const year = currentDate.getFullYear();
@@ -33,15 +35,26 @@ function AdminHome() {
 
   const today = currentDate.getDate(); // Get the current day number (1-31)
 
-  const handleClick = (day) => {
+  const handleClick = async (day) => {
     setSelectedDay(day);
-    // Smooth scroll to the new page (day section)
-    setTimeout(() => {
-      const section = document.getElementById(`section-${day}`);
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100); // Adding a slight delay to ensure the UI is updated before scrolling
+
+    // Fetch events for the selected day
+    try {
+      const response = await axios.get(`/api/eventlist`, {
+        params: { date:`${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${day}`}, // Send selected date to the backend
+      });
+      setEvents(response.data); // Update events state with fetched data
+
+      // Smooth scroll to the new page (day section)
+      setTimeout(() => {
+        const section = document.getElementById(`section-${day}`);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100); // Adding a slight delay to ensure the UI is updated before scrolling
+    } catch (error) {
+      console.error('Error fetching events:', error);
+    }
   };
 
   return (
@@ -52,7 +65,7 @@ function AdminHome() {
           backgroundImage: `url(${bg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          minHeight: '100vh', // Ensure the background takes the full height of the viewport
+          minHeight: '100vh',
           width: '100%',
         }}
       >
@@ -64,8 +77,8 @@ function AdminHome() {
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'rgba(0, 0, 0, 0.5)', // Dark overlay for the background only
-            zIndex: 0, // Make sure the overlay is behind content
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 0,
           }}
         ></div>
 
@@ -73,7 +86,7 @@ function AdminHome() {
         <div
           style={{
             position: 'relative',
-            zIndex: 1, // Ensure the content is above the background and overlay
+            zIndex: 1,
             textAlign: 'center',
             paddingTop: '20px',
           }}
@@ -118,7 +131,7 @@ function AdminHome() {
                   border: 'none',
                   borderRadius: '10px',
                   cursor: 'pointer',
-                  zIndex: 1, // Ensure buttons are on top of the overlay
+                  zIndex: 1,
                   border: day === today ? '3px solid white' : 'none', // White border for current date
                 }}
               >
@@ -131,43 +144,53 @@ function AdminHome() {
         {/* New section for the selected day */}
         {selectedDay && (
           <div
-          id={`section-${selectedDay}`}
-          style={{
-            padding: '50px',
-            position: 'relative',
-            backgroundImage: `url(${bg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            minHeight: '100vh', // Ensure the background takes the full height of the viewport
-            width: '90%',
-            marginTop: '30px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-            minHeight: '50vh', // Ensure the section is large enough to fill space
-          }}
-        >
-          <div
+            id={`section-${selectedDay}`}
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              background: 'rgba(0, 0, 0, 0.5)', // Dark overlay for the background only
-              zIndex: 0, // Make sure the overlay is behind content
+              padding: '50px',
+              position: 'relative',
+              backgroundImage: `url(${bg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              minHeight: '100vh',
+              width: '90%',
+              marginTop: '30px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+              minHeight: '50vh',
             }}
-          ></div>
-          <div style={{ zIndex: 1, position: 'relative' }}>
-            <h3 style={{ color: 'white' }}>Events on Day {selectedDay}</h3>
-            <p style={{ color: 'white' }}>
-              Events in ol with time for day {selectedDay}.
-            </p>
-            {/* Add more content for the selected day */}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: 'rgba(0, 0, 0, 0.5)',
+                zIndex: 0,
+              }}
+            ></div>
+            <div style={{ zIndex: 1, position: 'relative' }}>
+              <h3 style={{ color: 'white' }}>Events on Day {selectedDay}</h3>
+              <div>
+                {events.length === 0 ? (
+                  <p style={{ color: 'white' }}>No events for this day</p>
+                ) : (
+                  <ul style={{ color: 'white' }}>
+                    {events.map((event) => (
+                      <li key={event._id}>
+                        <strong>{event.eventname}</strong> - {event.time}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-)}
-</div>
-</div>
-);
+        )}
+      </div>
+    </div>
+  );
 }
+
 export default AdminHome;

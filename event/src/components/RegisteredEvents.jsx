@@ -4,45 +4,39 @@ import { Button } from 'react-bootstrap';
 function RegisteredEvents() {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
-  
+    const [error, setError] = useState(null);
+
     useEffect(() => {
         const fetchBookings = async () => {
-          const token = localStorage.getItem("token");
-          if (!token) {
-            alert("Please log in to view your bookings.");
-            return;
-          }
-          try {
-            const response = await fetch('http://localhost:5000/api/event/registeredevents', {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
-    
-            if (!response.ok) {
-              throw new Error("Failed to fetch bookings");
+            try {
+                const token = localStorage.getItem("token"); //Get the token from local storage. 
+                if (!token) {
+                    throw new Error('No token found');
+                }
+                const response = await fetch('/api/bookings/me', { // Update the route
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setBookings(data);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
             }
-    
-            const data = await response.json();
-            setBookings(data);
-          } catch (error) {
-            console.error("Error fetching bookings:", error);
-            alert(error.message);
-          }
-        };
+          };
+        
 
-
-    fetchBookings();
+          fetchBookings();
         }, []);
-
-        if (loading) {
-            return <div>Loading your bookings...</div>;
-        }
-
-        if (bookings.length === 0) {
-            return <div>No bookings found.</div>;
-        }
-
+    
+    
+        if (loading) return <div>Loading...</div>;
+        if (error) return <div>Error: {error.message}</div>;
 
 
 
