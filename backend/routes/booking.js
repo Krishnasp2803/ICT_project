@@ -39,11 +39,12 @@ router.post('/book', authenticateUser, async (req, res) => {
 
 //Get Registered Events for a User
 
-  router.get('/bookings/me', authenticateUser, async (req, res) => {
+  router.get('/booking/me', authenticateUser, async (req, res) => {
+    
     try {
       const bookings = await Booking.find({ userId: req.user._id })
-      .populate('eventId')
-      .lean();
+      .populate('eventId');
+      //.lean();
       res.status(200).json(bookings);
     } catch (error) {
       console.error('Error fetching bookings:', error);

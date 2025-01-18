@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { fetchUserData } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 
 function SidebarUserProf({setActiveTab}) {
@@ -10,10 +11,18 @@ function SidebarUserProf({setActiveTab}) {
     const handleMouseHover=(index)=>{setHoverColour(index)}
     const handleMouseLeave=()=>{setHoverColour(null)}
     const [selected, setSelected] = useState(1);
+    const navigate = useNavigate(); 
+
+    
     const handleOptionClick = (index, tab) => {
         setSelected(index); // Set the selected option
         setActiveTab(tab); // Call the parent handler to update the active tab
       };
+    
+      const handleLogout = () => {
+        localStorage.removeItem('token'); // Clear the token from localStorage
+        navigate('/'); // Redirect to the home page
+    };
 
     const [loading, setLoading] = useState(true); // Declare loading state
     const [error, setError] = useState(null);     // Declare error state
@@ -156,6 +165,7 @@ function SidebarUserProf({setActiveTab}) {
                 }}
                 onMouseEnter={()=>handleMouseHover(4)}
                 onMouseLeave={handleMouseLeave}
+                onClick={handleLogout}
                 >
                     <RiLogoutCircleRLine style={
                         {

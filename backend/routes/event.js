@@ -1,6 +1,8 @@
 const express = require('express');
 const Event = require('../models/event');
 const router = express.Router();
+const { parseISO } = require('date-fns');
+
 
 // Signup Route
 router.post('/newevent', async (req, res) => {
@@ -29,7 +31,7 @@ router.post('/newevent', async (req, res) => {
     }
 
     // Convert the received date to a Date object
-    let eventDate = new Date(date);
+    let eventDate = parseISO(date);
 
     // Add one day (if needed) to handle timezone issues
     eventDate.setDate(eventDate.getDate() + 1);
@@ -56,7 +58,7 @@ router.post('/newevent', async (req, res) => {
 
 // Fetch eventlist filtered by eventtype and city
 router.get('/eventlist', async (req, res) => {
-  const { eventtype, city } = req.query;
+  const { eventtype, city,eventDate}=req.query;
 
   console.log('Query parameters received:', req.query); // Log the query parameters
 
@@ -67,6 +69,19 @@ router.get('/eventlist', async (req, res) => {
       // Case-insensitive matching for city
       query.city = { $regex: new RegExp(city, 'i') };
     }
+    if (eventDate) {
+      try {
+        const startOfDay = new Date(eventDate);
+        startOfDay.setUTCHours(0, 0, 0, 0); // Start of the day in UTC
+        const endOfDay = new Date(eventDate);
+        endOfDay.setUTCHours(23, 59, 59, 999); // End of the day in UTC
+    
+        query.date = { $gte: startOfDay, $lte: endOfDay }; // Match the full day
+      } catch (error) {
+        return res.status(400).json({ message: 'Invalid date format', error: error.message });
+      }
+    }
+    
 
     console.log('MongoDB Query:', query); // Log the query before execution
 

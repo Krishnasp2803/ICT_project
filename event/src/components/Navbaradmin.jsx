@@ -8,9 +8,7 @@ function Navbar() {
   const [loading, setLoading] = useState(true); // Declare loading state
       const [error, setError] = useState(null);     // Declare error state
   //const [userData, setAdminData] = useState(null);
-      const [adminData, setAdminData] = useState({
-        adminname: '',
-      });
+      const [adminData, setAdminData] = useState({adminname: ''});
     
       // Fetch user data when component mounts
       useEffect(() => {
@@ -23,14 +21,18 @@ function Navbar() {
       }
         const loadAdminData = async () => {
             try {
-                const data = await fetchAdminData();
+                const data = await fetchAdminData(token);
                 console.log('Fetched admin data:', data); // Log the data
                 const { admin_name} = data;
                 setAdminData({
                   adminname: admin_name,   // mapping from response
                 })
             } catch (error) {
-                console.error('Error loading user data:', error);
+                console.error('Error loading admin data:', error);
+                setError("Failed to load admin data.");
+            }
+            finally {
+              setLoading(false);  // Set loading to false after data fetch completes
             }
         };
     

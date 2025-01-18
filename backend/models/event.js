@@ -13,7 +13,8 @@ const eventSchema = new mongoose.Schema({
   imgURL:{ type: String, required: true },
   description:{ type: String, required: true },
   city:{ type: String, required: true },
-  date:{ type: Date, required: true }
+  date: { type: Date, required: true, validate: { validator: (v) => !isNaN(Date.parse(v)), message: 'Invalid Date' } }
+
 }, {
   timestamps: true,
 });
