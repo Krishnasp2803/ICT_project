@@ -21,7 +21,7 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-        <Route index element={<Welcomepage/>}/>
+        <Route path='/' element={<Welcomepage/>}/>
         <Route path='/alogin' element={<Login_admin/>} />
         <Route path='/asignup'element={<Admin_signup/>}></Route>
         <Route path='/adminhome'element={<AdminHome/>}></Route>
