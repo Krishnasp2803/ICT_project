@@ -32,7 +32,7 @@ function AdminHome() {
     try {
       const formattedDate = format(new Date(currentDate.getFullYear(), currentDate.getMonth(), day), 'yyyy-MM-dd'); // Format the date correctly
       console.log('Formatted Date:', formattedDate);
-      const url = `http://localhost:5000/api/event/eventlist?eventDate=${encodeURIComponent(formattedDate)}`;
+      const url = `https://ict-project-yp5v.onrender.com/api/event/eventlist?eventDate=${encodeURIComponent(formattedDate)}`;
       console.log('Fetching URL:', url);
       
       const response = await fetch(url);

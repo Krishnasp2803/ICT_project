@@ -37,7 +37,7 @@ function Sidebar({ isSidebarOpen, onClose, selectedDate }) {
     
     const data = { eventname, eventtype, venue, time, hostname, ticketprice, imgURL, description, city, date: dateOnly };
     try {
-      const response = await fetch('http://localhost:5000/api/event/newevent', {
+      const response = await fetch('https://ict-project-yp5v.onrender.com/api/event/newevent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
