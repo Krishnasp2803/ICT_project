@@ -18,11 +18,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin[ 
-    'https://gleaming-zuccutto-95a341.netlify.app',  // Frontend URL 1
-    'https://cheery-sundae-582e27.netlify.app' ], // Frontend URL
-  methods: 'GET,POST',
-  allowedHeaders: 'Content-Type, Authorization',
+  // origin:'http://localhost:3000', // Frontend URL
+  // methods: 'GET,POST',
+  // allowedHeaders: 'Content-Type, Authorization',
 }));
 app.use(express.json());
 

@@ -45,7 +45,7 @@ function RegisteredEvents() {
         }
 
         const response = await fetch(
-          "https://ict-project-h0nu.onrender.com/api/event/booking/me",
+          "http://localhost:5000/api/event/booking/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
